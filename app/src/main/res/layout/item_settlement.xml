@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="61dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/type_account"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp60"
+        android:layout_marginLeft="@dimen/dp10"
+        android:gravity="center_vertical|left"
+        android:text="结算到支付宝\n2018-08-20 15:23"
+        android:textColor="@color/black_overlay"
+        android:textSize="@dimen/dp14" />
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp60"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp10"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp10"
+        android:text="250"
+        android:textColor="@color/motion_red"
+        android:textSize="@dimen/dp16" />
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_light" />
+
+
+</RelativeLayout>

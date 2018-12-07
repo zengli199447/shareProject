@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp250"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@drawable/corners_white_dialog_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10">
+
+            <TextView
+                android:id="@+id/settlement_account"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/settlement_account"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp14" />
+
+            <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                android:id="@+id/pay_type"
+                android:layout_width="@dimen/dp150"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/settlement_account"
+                android:drawableLeft="@drawable/transparent"
+                android:drawablePadding="@dimen/dp5"
+                android:gravity="center_vertical"
+                android:text="@string/settlement_account"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14" />
+
+            <ImageView
+                android:id="@+id/select_pay_type"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:padding="12.5dp"
+                android:src="@drawable/btn_right_night" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_light" />
+
+        <TextView
+            android:layout_width="@dimen/dp100"
+            android:layout_height="@dimen/dp50"
+            android:gravity="center"
+            android:text="@string/settlement_number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <EditText
+            android:id="@+id/edit_settlement_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginRight="@dimen/dp50"
+            android:layout_toRightOf="@+id/phone_text"
+            android:background="@color/transparent"
+            android:gravity="center_horizontal|bottom"
+            android:hint="@string/settlement_number_min_standard"
+            android:numeric="integer"
+            android:paddingBottom="@dimen/dp5"
+            android:singleLine="true"
+            android:textColorHint="@color/gray_light"
+            android:textCursorDrawable="@drawable/corners_edittext_cursor"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginRight="@dimen/dp50"
+            android:background="@color/gray_light" />
+
+        <TextView
+            android:lineSpacingExtra="5dp"
+            android:id="@+id/balance_and_value"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginRight="@dimen/dp50"
+            android:gravity="center_vertical|left"
+            android:text="账户余额 : 5000星豆\n当前结算价值 : 1元/100星豆"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp13" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/settlement"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginLeft="@dimen/dp50"
+        android:layout_marginRight="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp30"
+        android:background="@drawable/corners_solid_text_blue"
+        android:gravity="center"
+        android:text="@string/settlement"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp16" />
+
+    <TextView
+        android:id="@+id/prompt"
+        android:lineSpacingExtra="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp30"
+        android:gravity="center_vertical|left"
+        android:text="提示: \n1.账户星豆.....\n2.结算价值超过....\n3.结算资金会在..."
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp14" />
+
+
+</LinearLayout>

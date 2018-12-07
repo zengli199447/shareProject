@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_income_benefit"
+    android:visibility="gone"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/reading_share_reward"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/reading_share_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="已开通"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/level_of_increasing_returns"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/level_of_increasing_returns"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="已开通"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/team_management_commission"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/team_management_commission"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="已开通"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/advertising_investment_promotion_award"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/advertising_investment_promotion_award"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="已开通"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/platform_incentive_activities"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/platform_incentive_activities"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="已开通"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/license_performance_income"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/license_performance_income"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="已开通"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+</LinearLayout>

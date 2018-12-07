@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:psd="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_margin="@dimen/dp10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/my_invitation"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/copy"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/gray_light"
+            android:gravity="center"
+            android:text="@string/copy"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_code_text"/>
+
+    <RelativeLayout
+        android:id="@+id/qr_layout"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp200"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp50">
+
+        <ImageView
+            android:id="@+id/qr_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="@dimen/dp36"
+            android:layout_height="@dimen/dp36"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_launcher" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:gravity="center_horizontal"
+        android:text="@string/qr_prompt"
+        android:textColor="@color/black_overlay"
+        android:textSize="@dimen/dp14" />
+
+
+</LinearLayout>

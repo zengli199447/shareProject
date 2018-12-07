@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:visibility="gone"
+    android:id="@+id/layout_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:id="@+id/layout_personal_data"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/personal_data"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="         "
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_change_the_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/change_the_password"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:drawablePadding="@dimen/dp5"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:gravity="center_vertical"
+            android:text="         "
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/login_out"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp50"
+        android:background="@color/motion_red"
+        android:gravity="center"
+        android:text="@string/login_out"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp14" />
+
+
+</LinearLayout>

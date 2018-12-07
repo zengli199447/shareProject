@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp160"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/all_icome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp30"
+            android:gravity="center"
+            android:text="15000 \n 总收入 "
+            android:textColor="@color/black_overlay" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/all_icome"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/today_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp20"
+                    android:layout_centerHorizontal="true"
+                    android:text="1050"
+                    android:textColor="@color/fatigue_orange_2"
+                    android:textSize="@dimen/dp18" />
+
+                <TextView
+                    android:id="@+id/today_income_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/today_income"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="比昨日+100% ↑  \n今日收入"
+                    android:textColor="@color/motion_red"
+                    android:textSize="@dimen/dp12" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tomonth_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp20"
+                    android:layout_centerHorizontal="true"
+                    android:text="1500"
+                    android:textColor="@color/fatigue_orange_2"
+                    android:textSize="@dimen/dp18" />
+
+                <TextView
+                    android:id="@+id/tomonth_income_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tomonth_income"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="比昨日+100% ↑  \n今日收入"
+                    android:textColor="@color/motion_red"
+                    android:textSize="@dimen/dp12" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

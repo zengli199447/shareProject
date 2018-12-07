@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp200"
+                    android:background="@drawable/mine_title_bg">
+
+                    <com.example.administrator.sharenebulaproject.ui.view.CircleImageView
+                        android:id="@+id/user_heart"
+                        android:layout_width="@dimen/dp80"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp60"
+                        android:src="@drawable/user_photo_icon"
+                        app:border_color="@color/transparent"
+                        app:border_width="2dp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_marginLeft="@dimen/dp30"
+                        android:layout_marginTop="@dimen/dp60"
+                        android:layout_toRightOf="@+id/user_heart"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/nick_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="top"
+                            android:text="@string/nick_name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/vip_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/vip_level"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12" />
+
+                        <TextView
+                            android:id="@+id/invite_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="bottom"
+                            android:text="@string/invite_code"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/dp60">
+
+                        <ImageView
+                            android:id="@+id/btn_right"
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="@dimen/dp30"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/right_btn" />
+
+                    </RelativeLayout>
+
+                    <FrameLayout
+                        android:id="@+id/layout_message"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/dp20">
+
+                        <View
+                            android:layout_width="@dimen/dp20"
+                            android:layout_height="@dimen/dp20"
+                            android:layout_gravity="center"
+                            android:background="@drawable/message" />
+
+                        <TextView
+                            android:id="@+id/message_statistical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:background="@drawable/corners_message_attached"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="99"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp8" />
+
+                    </FrameLayout>
+
+
+                    <TextView
+                        android:id="@+id/upgrade_vip"
+                        android:layout_width="@dimen/dp100"
+                        android:layout_height="@dimen/dp32"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:background="@drawable/upgrade_text_bg"
+                        android:gravity="center"
+                        android:text="@string/upgrade_vip"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp16" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp160">
+
+                    <TextView
+                        android:id="@+id/mine_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:text="@string/mine_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp16" />
+
+
+                    <TextView
+                        android:id="@+id/balance_outstanding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mine_account"
+                        android:layout_marginLeft="60dp"
+                        android:gravity="center"
+                        android:text="@string/balance_outstanding"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/dp16"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/settlement"
+                        android:layout_width="@dimen/dp80"
+                        android:layout_height="@dimen/dp36"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/mine_account"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:background="@drawable/settlement_text_bg"
+                        android:gravity="center"
+                        android:text="@string/settlement"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp16" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp30"
+                        android:layout_below="@+id/settlement"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:orientation="horizontal">
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/settlement_account"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/settlement_account"
+                            android:drawablePadding="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:text="@string/settlement_account"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/settlement_content"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/settlement_content"
+                            android:drawablePadding="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:text="@string/settlement_content"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/settlement_log"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/settlement_log"
+                            android:drawablePadding="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:text="@string/settlement_log"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                    </LinearLayout>
+
+                    <include layout="@layout/layout_line_below" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp120">
+
+                    <TextView
+                        android:id="@+id/member_center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:text="@string/member_center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp16" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_below="@+id/member_center"
+                        android:orientation="horizontal">
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/mine_level"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/mine_level"
+                            android:gravity="center_horizontal"
+                            android:text="@string/mine_level"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/level_modle"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/level_modle"
+                            android:gravity="center_horizontal"
+                            android:text="@string/level_modle"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/level_permissions"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/level_permissions"
+                            android:gravity="center_horizontal"
+                            android:text="@string/level_permissions"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/mine_upgrade_vip"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/mine_upgrade_vip"
+                            android:gravity="center_horizontal"
+                            android:text="@string/mine_upgrade_vip"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp14" />
+
+                    </LinearLayout>
+
+                    <include layout="@layout/layout_line_below" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp200">
+
+                    <TextView
+                        android:id="@+id/service_hall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:text="@string/service_hall"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp16" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_service_hall"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_below="@+id/service_hall"
+                        android:orientation="horizontal">
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/invitation"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/invitation"
+                            android:gravity="center_horizontal"
+                            android:text="@string/invitation"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/posters"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/posters"
+                            android:gravity="center_horizontal"
+                            android:text="@string/posters"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/fans"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/fans"
+                            android:gravity="center_horizontal"
+                            android:text="@string/fans"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/security"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/security"
+                            android:gravity="center_horizontal"
+                            android:text="@string/security"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_below="@+id/layout_service_hall"
+                        android:orientation="horizontal">
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/help_center"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/help_center"
+                            android:gravity="center_horizontal"
+                            android:text="@string/help_center"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/customer_service"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/customer_service"
+                            android:gravity="center_horizontal"
+                            android:text="@string/customer_service"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/generalize"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/generalize"
+                            android:gravity="center_horizontal"
+                            android:text="@string/generalize"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                            android:id="@+id/setting_up"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/dp5"
+                            android:drawableTop="@drawable/setting_up"
+                            android:gravity="center_horizontal"
+                            android:text="@string/setting_up"
+                            android:textColor="@color/black_overlay"
+                            android:textSize="@dimen/dp12" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

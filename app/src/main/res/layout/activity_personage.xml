@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:id="@+id/user_heart_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/heart"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.CircleImageView
+            android:id="@+id/user_heart"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:src="@drawable/head_img"
+            app:border_color="@color/transparent"
+            app:border_width="1dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:id="@+id/nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/nick_name_"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/input_nick_name"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_nick_name"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/gender"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/input_gender"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_gender"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/form_city"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/input_city"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_city"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:id="@+id/professional"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/professional"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/input_professional"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_professional"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:id="@+id/expected_income"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/expected_income"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/input_expected_income"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_expected_income"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <TextView
+        android:id="@+id/fans_prople"
+        android:gravity="center"
+        android:background="@drawable/income_title_bg"
+        android:text="12540\n粉丝总人数"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp150" />
+
+    <ListView
+        android:id="@+id/fans_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:focusable="true"
+        android:listSelector="@color/transparent"
+        android:overScrollMode="never"/>
+
+
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="min">10</integer>
+    <integer name="max">120</integer>
+    <integer name="magin">-10</integer>
+
+    <integer name="textSize_min">14</integer>
+    <integer name="textSize_max">16</integer>
+
+    <integer name="validation_interval">60</integer>
+    <integer name="refresh_prompt_simulation">2500</integer>
+
+    <integer name="action_time">5</integer>
+
+</resources>

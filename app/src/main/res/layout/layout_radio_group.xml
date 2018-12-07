@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/group_indicator_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dp10"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/comprehensive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/comprehensive"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="@dimen/dp14" />
+
+        <RadioButton
+            android:id="@+id/news"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/news"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="@dimen/dp14" />
+
+        <RadioButton
+            android:id="@+id/bonus_pools"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/bonus_pools"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="@dimen/dp14" />
+
+        <RadioButton
+            android:id="@+id/reading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/reading"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="@dimen/dp14" />
+
+        <RadioButton
+            android:id="@+id/shares"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/shares"
+            android:textColor="@drawable/text_color_selector"
+            android:textSize="@dimen/dp14" />
+
+    </RadioGroup>
+
+</LinearLayout>

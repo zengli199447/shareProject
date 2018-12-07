@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background">
+
+    <RelativeLayout
+        android:id="@+id/advertising"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp180">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/action"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="@dimen/dp30"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/corners_hollow_text_gray"
+        android:text="(5s) 点击进入"
+        android:textColor="@color/gray_light_text"
+        android:textSize="@dimen/dp14" />
+
+
+</RelativeLayout>

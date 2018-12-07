@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_generalize"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="@string/the_contact"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/input_the_contact"
+                    android:layout_width="@dimen/dp200"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:gravity="center_vertical|right"
+                    android:hint="@string/input_the_contact"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/dp14" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray_light" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="@string/contact_phone_number"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/input_contact_phone_number"
+                    android:layout_width="@dimen/dp200"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:gravity="center_vertical|right"
+                    android:hint="@string/input_contact_phone_number"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/dp14" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/commite"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:layout_marginLeft="@dimen/dp50"
+                android:layout_marginRight="@dimen/dp50"
+                android:layout_marginTop="@dimen/dp50"
+                android:background="@drawable/corners_solid_text_blue"
+                android:gravity="center"
+                android:text="@string/commit_"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp16" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginRight="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp50"
+                android:gravity="center_horizontal"
+                android:text="说明"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14" />
+
+            <TextView
+                android:id="@+id/instructions"
+                android:lineSpacingExtra="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginRight="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp10"
+                android:textColor="@color/gray_light_text"
+                android:textSize="@dimen/dp12" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginBottom="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="10"
+            android:background="@color/transparent"
+            android:textColor="@color/fatigue_orange_2"
+            android:id="@+id/button_index"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp30" />
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@+id/button_index"
+            android:text="盖世英雄"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/harvest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp20"
+            android:text="盖世英雄"
+            android:textColor="@color/fatigue_orange_2"
+            android:textSize="@dimen/dp14" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

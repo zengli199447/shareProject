@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_center"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <RelativeLayout
+        android:id="@+id/layout_bg_first"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp140"
+        android:layout_below="@+id/layout_title_bar"
+        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@drawable/account_unbind_about_bg">
+
+        <RelativeLayout
+            android:id="@+id/zhifubao_pay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60">
+
+            <View
+                android:id="@+id/zhifubao_pay_icon"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp20"
+                android:background="@drawable/zhifubao_pay"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/zhifubao_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_toRightOf="@+id/zhifubao_pay_icon"
+                android:gravity="center_vertical"
+                android:text="@string/zhifubao_pay"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp16" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/zhifubao_pay_content"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp20"
+            android:layout_below="@+id/zhifubao_pay"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp16" />
+
+        <View
+            android:id="@+id/add_zhifubao_pay"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/zhifubao_pay"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/add_pay_bg" />
+
+        <TextView
+            android:id="@+id/bottom_text_first"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="@string/befor_open_bank"
+            android:textSize="@dimen/dp12"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_bg_center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp140"
+        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@drawable/account_unbind_about_bg"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/bank_pay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <View
+                android:id="@+id/bank_pay_icon"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp20"
+                android:background="@drawable/bank_pay"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/bank_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_toRightOf="@+id/bank_pay_icon"
+                android:gravity="center_vertical"
+                android:text="@string/bank_pay"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp16" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/bank_pay_content"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp20"
+            android:layout_below="@+id/bank_pay"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/dp16" />
+
+        <View
+            android:id="@+id/add_bank_pay"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/bank_pay"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/add_pay_bg" />
+
+        <TextView
+            android:id="@+id/bottom_text_center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="@string/befor_open_bank"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/dp12" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_bg_last"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp140"
+        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@drawable/account_unbind_about_bg"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/wechat_pay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60">
+
+            <View
+                android:id="@+id/wechat_pay_icon"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp20"
+                android:background="@drawable/wechat_pay"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/wechat_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_toRightOf="@+id/wechat_pay_icon"
+                android:gravity="center_vertical"
+                android:text="@string/wechat_account"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp16" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/wechat_content"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp20"
+            android:layout_below="@+id/wechat_pay"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/dp16" />
+
+        <View
+            android:id="@+id/add_wechat_pay"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/wechat_pay"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/add_pay_bg" />
+
+        <TextView
+            android:id="@+id/bottom_text_last"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="@string/befor_open_bank"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/dp12" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:text="@string/pay_prompt"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp14" />
+
+
+</RelativeLayout>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp140"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp70"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/security_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="@string/safety_tips"
+                android:textColor="@color/blue_center"
+                android:textSize="@dimen/dp16" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/real_name_system"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/certification"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:text="@string/certification_no"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp12"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/trade_password"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/trade_password"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:text="@string/complete"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp12"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <!--<include layout="@layout/layout_line_clearance" />-->
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/settlement_account_binding"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/settlement_account_binding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:text="@string/complete"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp12"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <!--<include layout="@layout/layout_line_clearance" />-->
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/phone_number_binding"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/phone_number_binding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:text="@string/complete"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp12"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/wechat_binding"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+            android:id="@+id/wechat_binding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:text="@string/un_complete"
+            android:textColor="@color/blue_min"
+            android:textSize="@dimen/dp12"
+            android:drawableRight="@drawable/btn_right_gray"
+            android:drawablePadding="@dimen/dp5"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

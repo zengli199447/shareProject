@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="@dimen/dp250">
+
+
+    <ImageView
+        android:id="@+id/settlement_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp250"
+        android:background="@drawable/settlement_bg"
+        />
+
+    <LinearLayout
+        android:layout_marginRight="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp40"
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30">
+
+        <TextView
+            android:id="@+id/query_log"
+            android:background="@drawable/text_transparent_bg"
+            android:textSize="@dimen/dp14"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="@string/query_log"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp30" />
+
+        <TextView
+            android:id="@+id/commit"
+            android:text="@string/commit"
+            android:background="@drawable/text_transparent_bg"
+            android:textSize="@dimen/dp14"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp30" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

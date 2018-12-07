@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_bank_text_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <include layout="@layout/layout_line_clearance" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/account"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/the_card_number"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <com.example.administrator.sharenebulaproject.ui.view.BandCardEditText
+            android:id="@+id/edit_bank_account"
+            android:layout_width="@dimen/dp300"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/bank_number"
+            android:inputType="textNoSuggestions|text|textCapCharacters"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/dp14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/belongs_to_the_bank"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/belongs_to_the_bank"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/hint_bank_type"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/dp14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="@string/name_of_cardholder"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <TextView
+            android:id="@+id/input_name_of_cardholder"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_name_of_cardholder"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/dp14" />
+
+    </RelativeLayout>
+
+</LinearLayout>

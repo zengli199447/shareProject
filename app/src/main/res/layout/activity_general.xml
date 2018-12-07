@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_outside"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <include layout="@layout/layout_text_input"/>
+
+    <include layout="@layout/layout_bank_text_input"/>
+
+    <include layout="@layout/layout_text_explains"/>
+
+    <include layout="@layout/layout_setting"/>
+
+    <include layout="@layout/layout_income_benefit"/>
+
+    <TextView
+        android:id="@+id/commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp40"
+        android:layout_marginTop="@dimen/dp50"
+        android:background="@drawable/corners_solid_text_blue"
+        android:gravity="center"
+        android:text="@string/commit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp16" />
+
+</LinearLayout>

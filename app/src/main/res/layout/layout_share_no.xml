@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp50"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/top"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp14"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/corners_hollow_text_red_orange"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/placed_at_the_top"
+        android:gravity="center"
+        android:textColor="@color/motion_red"
+        android:textSize="@dimen/dp10" />
+
+    <TextView
+        android:id="@+id/time_no"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp14"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_toRightOf="@+id/top"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/gray_light_text"
+        android:textSize="@dimen/dp12" />
+
+    <TextView
+        android:id="@+id/starbean_no"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time_no"
+        android:layout_marginTop="@dimen/dp5"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:text="奖励池 ：500星豆"
+        android:textColor="@color/gray_light_text"
+        android:textSize="@dimen/dp12" />
+
+    <TextView
+        android:id="@+id/shares_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/starbean_no"
+        android:layout_alignBottom="@+id/starbean_no"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_toEndOf="@+id/starbean_no"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:text="分享 : 1127人"
+        android:textColor="@color/gray_light_text"
+        android:textSize="@dimen/dp12" />
+
+
+    <TextView
+        android:id="@+id/amount_read_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time_no"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_toRightOf="@+id/shares_no"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:text="阅读次数 ：20000"
+        android:textColor="@color/gray_light_text"
+        android:textSize="@dimen/dp12" />
+
+    <!--<TextView-->
+        <!--android:layout_width="@dimen/dp70"-->
+        <!--android:layout_height="@dimen/dp30"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="@dimen/dp15"-->
+        <!--android:background="@drawable/corners_hollow_text_red"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/shars_check"-->
+        <!--android:textColor="@color/fatigue_red"-->
+        <!--android:textSize="@dimen/dp15" />-->
+
+    <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+        android:id="@+id/shares_check_no"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp30"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dp15"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/corners_hollow_text_red"
+        android:drawableRight="@drawable/share_no_icon"
+        android:gravity="center_vertical"
+        android:text="@string/shars_check"
+        android:textColor="@color/fatigue_red"
+        android:textSize="@dimen/dp15" />
+
+
+</RelativeLayout>

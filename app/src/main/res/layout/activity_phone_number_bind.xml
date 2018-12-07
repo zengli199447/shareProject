@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="@dimen/dp100">
+
+        <TextView
+            android:id="@+id/phone_text"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/phone_number"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <EditText
+            android:singleLine="true"
+            android:numeric="integer"
+            android:id="@+id/edit_phone_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp40"
+            android:layout_toRightOf="@+id/phone_text"
+            android:background="@color/transparent"
+            android:hint="@string/hint_number"
+            android:textColorHint="@color/gray_light"
+            android:textCursorDrawable="@drawable/corners_edittext_cursor"
+            android:textSize="16dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/validation_text"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/validation"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+        <EditText
+            android:id="@+id/edit_validation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp40"
+            android:layout_marginRight="@dimen/dp100"
+            android:layout_toRightOf="@+id/validation_text"
+            android:background="@color/transparent"
+            android:hint="@string/hint_validation"
+            android:textColorHint="@color/gray_light"
+            android:textCursorDrawable="@drawable/corners_edittext_cursor"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/validation"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/corners_hollow_text_gray"
+            android:gravity="center"
+            android:text="@string/get_validation"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp12" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_light" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp80"
+        android:layout_marginRight="@dimen/dp80"
+        android:layout_marginTop="@dimen/dp50"
+        android:background="@drawable/corners_solid_text_blue"
+        android:gravity="center"
+        android:text="@string/commit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp16" />
+
+    <TextView
+        android:id="@+id/prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp80"
+        android:layout_marginRight="@dimen/dp80"
+        android:layout_marginTop="@dimen/dp80"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:textColor="@color/blue"
+        android:text="星分享\n一个阅读分享可以赚钱的热文社区"
+        android:textSize="@dimen/dp12" />
+
+
+</LinearLayout>

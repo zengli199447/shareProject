@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:psd="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:gravity="center_horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/id_pop_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50">
+
+            <TextView
+                android:id="@+id/pop_pay_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/enter_transaction_password"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp16" />
+
+            <View
+                android:id="@+id/empty_input_view"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp10"
+                android:alpha="0.5"
+                android:background="@drawable/delet" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_light" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                android:id="@+id/wechat_pay_img"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp50"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:drawableLeft="@drawable/wechat_pay_icon"
+                android:drawablePadding="@dimen/dp5"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14" />
+
+            <TextView
+                android:id="@+id/wechat_pay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_toRightOf="@+id/wechat_pay_img"
+                android:gravity="center_vertical"
+                android:text="@string/wechat_account"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14" />
+
+            <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                android:id="@+id/zhifubao_pay_img"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp50"
+                android:layout_below="@+id/wechat_pay_img"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/dp10"
+                android:drawableLeft="@drawable/zhifubao_pay_icon"
+                android:drawablePadding="@dimen/dp5"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14" />
+
+            <TextView
+                android:id="@+id/zhifubao_pay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:layout_below="@+id/wechat_pay_img"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_toRightOf="@+id/zhifubao_pay_img"
+                android:gravity="center_vertical"
+                android:text="@string/zhifubao_account"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14" />
+
+            <com.example.administrator.sharenebulaproject.ui.view.DrawableCenterTextView
+                android:id="@+id/bank_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp50"
+                android:layout_below="@+id/zhifubao_pay"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/dp10"
+                android:drawableLeft="@drawable/bank_pay"
+                android:drawablePadding="@dimen/dp5"
+                android:gravity="center_vertical"
+                android:text="@string/settlement_account"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/dp14"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/commit_pay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_marginLeft="@dimen/dp50"
+            android:layout_marginRight="@dimen/dp50"
+            android:background="@drawable/corners_soild_text_red"
+            android:gravity="center"
+            android:text="@string/commit_pay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp16" />
+
+    </LinearLayout>
+
+</RelativeLayout>
