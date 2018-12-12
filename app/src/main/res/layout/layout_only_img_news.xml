@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_only_img"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/only_min_img"
@@ -17,10 +14,10 @@
             android:scaleType="centerCrop" />
 
         <TextView
+            android:layout_marginLeft="@dimen/dp10"
             android:id="@+id/only_img_title_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp10"
             android:layout_toRightOf="@id/only_min_img"
             android:gravity="center_vertical"
             android:lineSpacingExtra="@dimen/dp5"
@@ -28,6 +25,6 @@
             android:textColor="@color/black_"
             android:textSize="@dimen/dp16" />
 
-    </RelativeLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

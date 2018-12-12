@@ -4,6 +4,7 @@ import android.webkit.URLUtil;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.administrator.sharenebulaproject.R;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumLoader;
 import com.yanzhenjie.album.task.DefaultAlbumLoader;
@@ -22,6 +23,7 @@ public class GlideAlbumLoader implements AlbumLoader {
         if (mediaType == AlbumFile.TYPE_IMAGE) {
             Glide.with(imageView.getContext())
                     .load(albumFile.getPath())
+                    .error(R.drawable.banner_off)
                     .into(imageView);
         } else if (mediaType == AlbumFile.TYPE_VIDEO) {
             DefaultAlbumLoader.getInstance()
@@ -34,10 +36,12 @@ public class GlideAlbumLoader implements AlbumLoader {
         if (URLUtil.isNetworkUrl(imagePath)) {
             Glide.with(imageView.getContext())
                     .load(imagePath)
+                    .error(R.drawable.banner_off)
                     .into(imageView);
         } else {
             Glide.with(imageView.getContext())
                     .load(new File(imagePath))
+                    .error(R.drawable.banner_off)
                     .into(imageView);
         }
     }

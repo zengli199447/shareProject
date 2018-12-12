@@ -27,6 +27,8 @@ import com.bytedance.sdk.openadsdk.TTBannerAd;
 import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.global.AppKeyConfig;
 import com.example.administrator.sharenebulaproject.global.DataClass;
+import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
+import com.example.administrator.sharenebulaproject.rxtools.RxBus;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.qq.e.ads.cfg.MultiProcessFlag;
 import com.qq.e.ads.cfg.VideoOption;
@@ -79,6 +81,12 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
         nativeExpressAD.loadAD(1);
     }
 
+    public void initNativeExpressAD(int pageNumber) {
+        ADSize adSize = new ADSize(ADSize.FULL_WIDTH, ADSize.AUTO_HEIGHT); // 消息流中用AUTO_HEIGHT
+        nativeExpressAD = new NativeExpressAD(context, adSize, AppKeyConfig.ADVERTISING_QQID, AppKeyConfig.ADVERTISING_QQ_ADVERTISING_ID, this);
+        nativeExpressAD.loadAD(12 * pageNumber);
+    }
+
     @Override
     public void onNoAD(AdError adError) {
         LogUtil.e(TAG, String.format("onNoAD, error code: %d, error msg: %s", adError.getErrorCode(), adError.getErrorMsg()));
@@ -93,17 +101,20 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
     @Override
     public void onADLoaded(List<NativeExpressADView> list) {
         // 释放前一个展示的NativeExpressADView的资源
-        if (nativeExpressADView != null) {
-            nativeExpressADView.destroy();
-        }
-        if (advertisingView.getChildCount() > 0) {
-            advertisingView.removeAllViews();
-        }
-        nativeExpressADView = list.get(0);
-        LogUtil.e(TAG, "onADLoaded, video info: " + getAdInfo(nativeExpressADView));
-        // 广告可见才会产生曝光，否则将无法产生收益。
-        advertisingView.addView(nativeExpressADView);
-        nativeExpressADView.render();
+//        if (nativeExpressADView != null) {
+//            nativeExpressADView.destroy();
+//        }
+//        if (advertisingView.getChildCount() > 0) {
+//            advertisingView.removeAllViews();
+//        }
+//        nativeExpressADView = list.get(0);
+//        LogUtil.e(TAG, "onADLoaded, video info: " + getAdInfo(nativeExpressADView));
+//        // 广告可见才会产生曝光，否则将无法产生收益。
+//        advertisingView.addView(nativeExpressADView);
+//        nativeExpressADView.render();
+        if (initDataListener != null)
+            initDataListener.onInitDataListener(list);
+
     }
 
     @Override
@@ -129,6 +140,8 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
     @Override
     public void onADClosed(NativeExpressADView nativeExpressADView) {
         LogUtil.e(TAG, "onADClosed");
+        if (initDataListener != null)
+            initDataListener.onRemoverView(nativeExpressADView);
     }
 
     @Override
@@ -338,6 +351,17 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
 
     }
 
+    public interface InitDataListener {
+        void onInitDataListener(List<NativeExpressADView> list);
+
+        void onRemoverView(NativeExpressADView adView);
+    }
+
+    private InitDataListener initDataListener;
+
+    public void setInitDataListener(InitDataListener initDataListener) {
+        this.initDataListener = initDataListener;
+    }
 
 }
 

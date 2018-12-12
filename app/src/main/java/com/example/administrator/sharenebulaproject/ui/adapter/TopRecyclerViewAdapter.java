@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.model.bean.HotAllDataBean;
+import com.example.administrator.sharenebulaproject.ui.holder.MyViewHolder;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 
@@ -25,7 +26,7 @@ import java.util.List;
  * Created by Administrator on 2018/8/13.
  */
 
-public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerViewAdapter.ViewHolder> {
+public class TopRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private Context context;
     private List<HotAllDataBean.Result.topNews> TheArticleList;
@@ -76,7 +77,7 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         switch (viewType) {
             case 0:
@@ -103,34 +104,63 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
             default:
                 throw new InvalidParameterException();
         }
-        ViewHolder holder = new ViewHolder(view);
+        MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         newsBean = TheArticleList.get(position);
-        holder.title_content.setText(newsBean.getTitle());
-        holder.time_no.setText(newsBean.getCreatedate());
-        holder.amount_read_no.setText(new StringBuffer().append("阅读: ").append(newsBean.getAmount_read()).toString());
+
+        TextView title_content =  holder.itemView.findViewById(R.id.title_content);
+        TextView time_no =  holder.itemView.findViewById(R.id.time_no);
+        TextView amount_read_no =  holder.itemView.findViewById(R.id.amount_read_no);
+
+        ImageView only_min_img =  holder.itemView.findViewById(R.id.only_min_img);
+
+        ImageView min_img1 =  holder.itemView.findViewById(R.id.min_img1);
+        ImageView min_img2 =  holder.itemView.findViewById(R.id.min_img2);
+        ImageView min_img3 =  holder.itemView.findViewById(R.id.min_img3);
+
+        ImageView only_max_img =  holder.itemView.findViewById(R.id.only_max_img);
+
+        TextView starbean_no =  holder.itemView.findViewById(R.id.starbean_no);
+        TextView shares_no =  holder.itemView.findViewById(R.id.shares_no);
+        TextView shares_check_no =  holder.itemView.findViewById(R.id.shares_check_no);
+
+        RelativeLayout progress_bar =  holder.itemView.findViewById(R.id.progress_bar);
+
+        LinearLayout layout_news_item =  holder.itemView.findViewById(R.id.layout_news_item);
+
+        View line_placeholder =  holder.itemView.findViewById(R.id.line_placeholder);
+
+        TextView after_refresh =  holder.itemView.findViewById(R.id.after_refresh);
+
+        View bottom_line = holder.itemView.findViewById(R.id.bottom_line);
+
+        TextView top = holder.itemView.findViewById(R.id.top);
+
+        title_content.setText(newsBean.getTitle());
+        time_no.setText(newsBean.getCreatedate());
+        amount_read_no.setText(new StringBuffer().append("阅读: ").append(newsBean.getAmount_read()).toString());
         String MinImg = newsBean.getListimg();
-        if (holder.only_min_img != null) {
+        if (only_min_img != null) {
             String[] split = newsBean.getListimg().split(",");
-            Glide.with(context).load(new StringBuffer().append(DataClass.FileUrl).append(split[0]).toString()).error(R.drawable.banner_off).into(holder.only_min_img);
+            Glide.with(context).load(new StringBuffer().append(DataClass.FileUrl).append(split[0]).toString()).error(R.drawable.banner_off).into(only_min_img);
         }
-        if (holder.min_img1 != null) {
-            ImageView views[] = {holder.min_img1, holder.min_img2, holder.min_img3};
-            ViewGroup.LayoutParams minImg1layoutParams = holder.min_img1.getLayoutParams();
-            ViewGroup.LayoutParams minImg2layoutParams = holder.min_img2.getLayoutParams();
-            ViewGroup.LayoutParams minImg3layoutParams = holder.min_img3.getLayoutParams();
+        if (min_img1 != null) {
+            ImageView views[] = {min_img1, min_img2, min_img3};
+            ViewGroup.LayoutParams minImg1layoutParams = min_img1.getLayoutParams();
+            ViewGroup.LayoutParams minImg2layoutParams = min_img2.getLayoutParams();
+            ViewGroup.LayoutParams minImg3layoutParams = min_img3.getLayoutParams();
             int width = DataClass.WINDOWS_WIDTH - 30;
             minImg1layoutParams.width = SystemUtil.dp2px(context, width / 3);
             minImg2layoutParams.width = SystemUtil.dp2px(context, width / 3);
             minImg3layoutParams.width = SystemUtil.dp2px(context, width / 3);
 
-            holder.min_img1.setLayoutParams(minImg1layoutParams);
-            holder.min_img2.setLayoutParams(minImg2layoutParams);
-            holder.min_img3.setLayoutParams(minImg3layoutParams);
+            min_img1.setLayoutParams(minImg1layoutParams);
+            min_img2.setLayoutParams(minImg2layoutParams);
+            min_img3.setLayoutParams(minImg3layoutParams);
 
             String[] split = newsBean.getListimg().split(",");
             for (int j = 0; j < split.length; j++) {
@@ -138,35 +168,35 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
             }
         }
         String MaxImg = newsBean.getListimg();
-        if (holder.only_max_img != null) {
+        if (only_max_img != null) {
             String[] split = newsBean.getListimg().split(",");
-            Glide.with(context).load(new StringBuffer().append(DataClass.FileUrl).append(split[0]).toString()).error(R.drawable.banner_off).into(holder.only_max_img);
+            Glide.with(context).load(new StringBuffer().append(DataClass.FileUrl).append(split[0]).toString()).error(R.drawable.banner_off).into(only_max_img);
         }
         if (newsBean.getIfcanmoney() == 1) {
-            if (holder.starbean_no != null)
-                holder.starbean_no.setText(new StringBuffer().append("奖励池: ").append(newsBean.getStarbean()).append("星豆").toString());
-            if (holder.shares_no != null)
-                holder.shares_no.setText(new StringBuffer().append("分享: ").append(newsBean.getAmount_share()).append("人").toString());
+            if (starbean_no != null)
+                starbean_no.setText(new StringBuffer().append("奖励池: ").append(newsBean.getStarbean()).append("星豆").toString());
+            if (shares_no != null)
+                shares_no.setText(new StringBuffer().append("分享: ").append(newsBean.getAmount_share()).append("人").toString());
 
             if (Integer.valueOf(newsBean.getStarbean()) > 0) {
-                if (holder.shares_check_no != null) {
-                    holder.shares_check_no.setTextColor(context.getResources().getColor(R.color.fatigue_red));
-                    holder.shares_check_no.setBackground(context.getResources().getDrawable(R.drawable.corners_hollow_text_red));
+                if (shares_check_no != null) {
+                    shares_check_no.setTextColor(context.getResources().getColor(R.color.fatigue_red));
+                    shares_check_no.setBackground(context.getResources().getDrawable(R.drawable.corners_hollow_text_red));
                     Drawable img = context.getResources().getDrawable(R.drawable.share_no_icon);
                     img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
-                    holder.shares_check_no.setCompoundDrawables(null, null, img, null);
+                    shares_check_no.setCompoundDrawables(null, null, img, null);
                 }
             } else {
-                if (holder.shares_check_no != null) {
-                    holder.shares_check_no.setTextColor(context.getResources().getColor(R.color.gray_light));
-                    holder.shares_check_no.setBackground(context.getResources().getDrawable(R.drawable.corners_hollow_text_gray));
+                if (shares_check_no != null) {
+                    shares_check_no.setTextColor(context.getResources().getColor(R.color.gray_light));
+                    shares_check_no.setBackground(context.getResources().getDrawable(R.drawable.corners_hollow_text_gray));
                     Drawable img = context.getResources().getDrawable(R.drawable.share_off_icon);
                     img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
-                    holder.shares_check_no.setCompoundDrawables(null, null, img, null);
+                    shares_check_no.setCompoundDrawables(null, null, img, null);
                 }
             }
-            if (holder.shares_check_no != null)
-                holder.shares_check_no.setOnClickListener(new View.OnClickListener() {
+            if (shares_check_no != null)
+                shares_check_no.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (onCheckListener != null)
@@ -175,8 +205,8 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
                 });
         }
 
-        if (holder.layout_news_item != null)
-            holder.layout_news_item.setOnClickListener(new View.OnClickListener() {
+        if (layout_news_item != null)
+            layout_news_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     LogUtil.e("DailyRecyclerViewAdapter", "newsBean.getNewsid() : " + newsBean.getNewsid());
@@ -187,12 +217,12 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
 
 
         if (position == TheArticleList.size() - 1) {
-            holder.bottom_line.setVisibility(View.GONE);
+            bottom_line.setVisibility(View.GONE);
         } else {
-            holder.bottom_line.setVisibility(View.VISIBLE);
+            bottom_line.setVisibility(View.VISIBLE);
         }
 
-        holder.top.setVisibility(View.VISIBLE);
+        top.setVisibility(View.VISIBLE);
 
     }
 
@@ -207,55 +237,9 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<TopRecyclerView
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-
-        private final TextView title_content;
-        private final TextView time_no;
-        private final TextView amount_read_no;
-        private final ImageView only_min_img;
-        private final ImageView min_img1;
-        private final ImageView min_img2;
-        private final ImageView min_img3;
-        private final ImageView only_max_img;
-        private final TextView starbean_no;
-        private final TextView shares_no;
-        private final TextView shares_check_no;
-        private final RelativeLayout progress_bar;
-        private final LinearLayout layout_news_item;
-        private final View line_placeholder;
-        private final TextView after_refresh;
-        private final View bottom_line;
-        private final TextView top;
-
         public ViewHolder(View itemView) {
             super(itemView);
-            title_content = (TextView) itemView.findViewById(R.id.title_content);
-            time_no = (TextView) itemView.findViewById(R.id.time_no);
-            amount_read_no = (TextView) itemView.findViewById(R.id.amount_read_no);
 
-            only_min_img = (ImageView) itemView.findViewById(R.id.only_min_img);
-
-            min_img1 = (ImageView) itemView.findViewById(R.id.min_img1);
-            min_img2 = (ImageView) itemView.findViewById(R.id.min_img2);
-            min_img3 = (ImageView) itemView.findViewById(R.id.min_img3);
-
-            only_max_img = (ImageView) itemView.findViewById(R.id.only_max_img);
-
-            starbean_no = (TextView) itemView.findViewById(R.id.starbean_no);
-            shares_no = (TextView) itemView.findViewById(R.id.shares_no);
-            shares_check_no = (TextView) itemView.findViewById(R.id.shares_check_no);
-
-            progress_bar = (RelativeLayout) itemView.findViewById(R.id.progress_bar);
-
-            layout_news_item = (LinearLayout) itemView.findViewById(R.id.layout_news_item);
-
-            line_placeholder = (View) itemView.findViewById(R.id.line_placeholder);
-
-            after_refresh = (TextView) itemView.findViewById(R.id.after_refresh);
-
-            bottom_line = itemView.findViewById(R.id.bottom_line);
-
-            top = itemView.findViewById(R.id.top);
 
 
         }

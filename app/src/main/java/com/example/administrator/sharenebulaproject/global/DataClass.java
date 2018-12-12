@@ -176,12 +176,12 @@ public class DataClass {
         if (loginUserInfos != null && loginUserInfos.size() > 0) {
             final LoginUserInfo loginUserInfo = loginUserInfos.get(0);
             if (userName.equals(loginUserInfo.getUsername())) {
-                dataManager.UpDataLoginUserInfo(new LoginUserInfo(loginUserInfo.getId(), userName, passWord));
+                dataManager.UpDataLoginUserInfo(new LoginUserInfo(loginUserInfo.getId(), "token",userName, passWord));
             } else {
-                dataManager.insertLoginUserInfo(new LoginUserInfo(userName, passWord));
+                dataManager.insertLoginUserInfo(new LoginUserInfo(userName,"token", passWord));
             }
         } else {
-            dataManager.insertLoginUserInfo(new LoginUserInfo(userName, passWord));
+            dataManager.insertLoginUserInfo(new LoginUserInfo(userName, "token",passWord));
         }
     }
 

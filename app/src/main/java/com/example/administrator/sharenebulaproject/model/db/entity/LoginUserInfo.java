@@ -19,17 +19,21 @@ public class LoginUserInfo {
     private String username;
     //用户id
     private String userid;
+    //在线状态
+    private String token;
 
-    public LoginUserInfo(String username, String userid) {
+    public LoginUserInfo(String username, String userid, String token) {
         this.username = username;
         this.userid = userid;
+        this.token = token;
     }
 
-    @Generated(hash = 1328220862)
-    public LoginUserInfo(Long id, String username, String userid) {
+    @Generated(hash = 1324356575)
+    public LoginUserInfo(Long id, String username, String userid, String token) {
         this.id = id;
         this.username = username;
         this.userid = userid;
+        this.token = token;
     }
 
     @Generated(hash = 436417725)
@@ -60,9 +64,13 @@ public class LoginUserInfo {
         this.userid = userid;
     }
 
+    public String getToken() {
+        return this.token;
+    }
 
-
-
+    public void setToken(String token) {
+        this.token = token;
+    }
 
 
 }

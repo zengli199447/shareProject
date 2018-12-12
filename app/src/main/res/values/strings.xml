@@ -247,6 +247,8 @@
     <string name="local">本地</string>
     <string name="action">点击进入</string>
     <string name="the_city">市</string>
+    <string name="illegal_user">非法用户</string>
+    <string name="other_equipment_login">账号已在其他设备登陆</string>
 
 
 </resources>

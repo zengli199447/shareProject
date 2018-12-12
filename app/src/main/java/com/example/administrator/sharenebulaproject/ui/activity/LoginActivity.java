@@ -1,5 +1,6 @@
 package com.example.administrator.sharenebulaproject.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -168,6 +169,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         umShareListenerBuilder.setOnNotReachListener(this);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -363,7 +365,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         Log.e(TAG, "loginInfoBean.getStatus() : " + loginInfoBean.getStatus());
                         if (loginInfoBean.getStatus() == 1) {
                             LoginInfoBean.ResultBean result = loginInfoBean.getResult();
-                            dataManager.insertLoginUserInfo(new LoginUserInfo("admin", result.getUserid()));
+                            dataManager.insertLoginUserInfo(new LoginUserInfo("admin", result.getUserid(),result.getToken()));
                             DataClass.initUserInfo(result);
                             RxBus.getDefault().post(new CommonEvent(EventCode.REFRESH_BRANCH));
                             RxBus.getDefault().post(new CommonEvent(EventCode.USERID_REFRESH, loginInfoBean.getResult().getUserid()));

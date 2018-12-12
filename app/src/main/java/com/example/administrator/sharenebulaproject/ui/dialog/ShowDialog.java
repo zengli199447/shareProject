@@ -36,10 +36,15 @@ public class ShowDialog {
         return progressDialog;
     }
 
-
     public void showPromptDialog(final Context context, String content, boolean status) {
         final PromptDialog loopDialog = new PromptDialog(context, R.style.dialog, content, status);
         loopDialog.show();
+        SystemUtil.windowToDark(context);
+    }
+
+    public void showLoginStatusPromptDialog(final Context context, String content) {
+        final LoginStatusPromptDialog loginStatusPromptDialog = new LoginStatusPromptDialog(context, R.style.dialog, content);
+        loginStatusPromptDialog.show();
         SystemUtil.windowToDark(context);
     }
 

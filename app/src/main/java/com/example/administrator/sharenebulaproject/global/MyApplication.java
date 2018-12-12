@@ -58,7 +58,7 @@ public class MyApplication extends Application {
         InitializeService.start(this);
         //友盟初始化
         initUm();
-        new UmPushBuilder(this).initPushSetting();
+//        new UmPushBuilder(this).initPushSetting();
         TTAdManagerHolder.getInstance(this);
     }
 

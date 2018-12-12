@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/corners_white_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/corners_blue_half_dialog_bg"
+        android:gravity="center"
+        android:text="@string/warm_prompt"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_light" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/input_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/agreement_content"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/dp14" />
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/confirm"
+            android:textColor="@color/black_overlay"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

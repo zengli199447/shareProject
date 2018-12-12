@@ -67,7 +67,8 @@
         <activity
             android:name=".ui.activity.HomeActivity"
             android:launchMode="singleTask"
-            android:theme="@style/MainTheme">
+            android:theme="@style/MainTheme"
+            android:hardwareAccelerated="true">
 
         </activity>
 

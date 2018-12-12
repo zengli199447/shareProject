@@ -256,6 +256,15 @@ public class HotAllDataBean {
             private String title;
             private int viewtype;
             private boolean status;
+            private String source;
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
 
             public int getAmount_read() {
                 return amount_read;
