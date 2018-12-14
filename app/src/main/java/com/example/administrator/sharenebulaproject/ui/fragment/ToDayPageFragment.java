@@ -136,6 +136,10 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
                 }
                 handler.sendEmptyMessageDelayed(0, getResources().getInteger(R.integer.refresh_prompt_simulation));
                 break;
+            case EventCode.LOGIN_OUT:
+            case EventCode.USERID_REFRESH:
+                TheNewsTypeNetWork();
+                break;
         }
     }
 

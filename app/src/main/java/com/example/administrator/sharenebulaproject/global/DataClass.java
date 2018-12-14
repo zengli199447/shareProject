@@ -153,13 +153,15 @@ public class DataClass {
 
 
     //新闻类型
-    public static  List<Object> TYPE_TITLE = new ArrayList<>();
+    public static List<Object> TYPE_TITLE = new ArrayList<>();
     //所有新闻类型
-    public static  List<TheNewTypeNetBean.ResultBean.AllBean> ALL_TYPE_TITLE = new ArrayList<>();
+    public static List<TheNewTypeNetBean.ResultBean.AllBean> ALL_TYPE_TITLE = new ArrayList<>();
 
     private ArrayList<Integer> bannerList = new ArrayList<>();
     //当前城市
     public static String CNBYLOCATION = "武汉市";
+
+    public static int DefaultInformationFlow = 11;
 
     public DataManager dataManager;
 
@@ -176,12 +178,12 @@ public class DataClass {
         if (loginUserInfos != null && loginUserInfos.size() > 0) {
             final LoginUserInfo loginUserInfo = loginUserInfos.get(0);
             if (userName.equals(loginUserInfo.getUsername())) {
-                dataManager.UpDataLoginUserInfo(new LoginUserInfo(loginUserInfo.getId(), "token",userName, passWord));
+                dataManager.UpDataLoginUserInfo(new LoginUserInfo(loginUserInfo.getId(), "token", userName, passWord));
             } else {
-                dataManager.insertLoginUserInfo(new LoginUserInfo(userName,"token", passWord));
+                dataManager.insertLoginUserInfo(new LoginUserInfo(userName, "token", passWord));
             }
         } else {
-            dataManager.insertLoginUserInfo(new LoginUserInfo(userName, "token",passWord));
+            dataManager.insertLoginUserInfo(new LoginUserInfo(userName, "token", passWord));
         }
     }
 

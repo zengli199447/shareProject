@@ -66,9 +66,9 @@
 
         <activity
             android:name=".ui.activity.HomeActivity"
+            android:hardwareAccelerated="true"
             android:launchMode="singleTask"
-            android:theme="@style/MainTheme"
-            android:hardwareAccelerated="true">
+            android:theme="@style/MainTheme">
 
         </activity>
 
@@ -167,6 +167,7 @@
 
         <activity
             android:name=".ui.activity.AdvertisingActivity"
+            android:hardwareAccelerated="true"
             android:theme="@style/MainTheme" />
 
         <activity
@@ -230,7 +231,6 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-
 
         <meta-data
             android:name="com.tencent.rdm.uuid"

@@ -18,6 +18,7 @@ import com.example.administrator.sharenebulaproject.model.bean.HotAllDataBean;
 import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
+import com.example.administrator.sharenebulaproject.ui.adapter.DiversifiedAdapter;
 import com.example.administrator.sharenebulaproject.ui.adapter.HotRecyclerViewAdapter;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
@@ -37,7 +38,7 @@ import butterknife.BindView;
  * 邮箱：229017464@qq.com
  * remark:
  */
-public class SearchActivity extends BaseActivity implements View.OnClickListener, HotRecyclerViewAdapter.onItemCheckListener {
+public class SearchActivity extends BaseActivity implements View.OnClickListener, DiversifiedAdapter.onItemCheckListener {
 
     @BindView(R.id.empty_layout)
     TextView empty_layout;
@@ -50,8 +51,8 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     @BindView(R.id.search)
     TextView search;
 
-    private List<HotAllDataBean.Result.newsBean> AllSortClassList = new ArrayList<>();
-    private HotRecyclerViewAdapter hotRecyclerViewAdapter;
+    private List<Object> AllSortClassList = new ArrayList<>();
+    private DiversifiedAdapter diversifiedAdapter;
     private ProgressDialog progressDialog;
 
     @Override
@@ -82,15 +83,15 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initView() {
         recycler_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        hotRecyclerViewAdapter = new HotRecyclerViewAdapter(this, AllSortClassList);
-        recycler_view.setAdapter(hotRecyclerViewAdapter);
+        diversifiedAdapter = new DiversifiedAdapter(this, AllSortClassList, null);
+        recycler_view.setAdapter(diversifiedAdapter);
     }
 
     @Override
     protected void initListener() {
         search.setOnClickListener(this);
         img_btn_black.setOnClickListener(this);
-        hotRecyclerViewAdapter.setOnItemCheckListener(this);
+        diversifiedAdapter.setOnItemCheckListener(this);
     }
 
     @Override
@@ -100,6 +101,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 if (search_view.getText().toString().isEmpty()) {
                     toastUtil.showToast(getString(R.string.empty_search));
                 } else {
+                    SystemUtil.closeKeybord(search_view, this);
                     initNetDataWork(search_view.getText().toString());
                 }
                 break;
@@ -110,14 +112,14 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void refreshView() {
-        hotRecyclerViewAdapter.notifyDataSetChanged();
+        diversifiedAdapter.notifyDataSetChanged();
     }
 
     @SuppressLint("WrongConstant")
     @Override
     public void onItemClick(int i) {
-        HotAllDataBean.Result.newsBean newsBean = AllSortClassList.get(i);
-        Intent dailyIntent = new Intent(this, AnecdotesActivity.class);
+        HotAllDataBean.Result.newsBean newsBean = (HotAllDataBean.Result.newsBean) AllSortClassList.get(i);
+        Intent dailyIntent = new Intent(this, PublicWebActivity.class);
         dailyIntent.setFlags(EventCode.GENERAL_WEB);
         dailyIntent.putExtra("value", String.valueOf(newsBean.getNewsid()));
         dailyIntent.putExtra("shareTitle", newsBean.getTitle());
@@ -129,7 +131,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     }
 
     @Override
-    public void refreshItemClick() {
+    public void onRefreshItemClick() {
 
     }
 

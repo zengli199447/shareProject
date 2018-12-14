@@ -187,7 +187,16 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
 //                title_about_img.setBackground(getResources().getDrawable(R.drawable.share_icon));
                 webViewBuilder.loadWebView(intentValue, false);
                 break;
-
+            case EventCode.ADVERTISING:
+                web_layout.setVisibility(View.VISIBLE);
+                title_name.setText(getString(R.string.advertising));
+                webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").toString(), true);
+                break;
+            case EventCode.EXTERNAL_LINKS:
+                web_layout.setVisibility(View.VISIBLE);
+                title_name.setText(getString(R.string.daily_news));
+                webViewBuilder.loadWebView(getIntent().getStringExtra("url"), true);
+                break;
         }
     }
 

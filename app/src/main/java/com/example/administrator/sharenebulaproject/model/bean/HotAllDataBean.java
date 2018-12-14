@@ -372,6 +372,23 @@ public class HotAllDataBean {
             private String content;
             private String source;
 
+            public newsBean(int amount_read, int amount_share, String createdate, int ifcanmoney, String listimg, int newsid, String newstype, String ordernum, int starbean, String title, int viewtype, int type, String content, String source) {
+                this.amount_read = amount_read;
+                this.amount_share = amount_share;
+                this.createdate = createdate;
+                this.ifcanmoney = ifcanmoney;
+                this.listimg = listimg;
+                this.newsid = newsid;
+                this.newstype = newstype;
+                this.ordernum = ordernum;
+                this.starbean = starbean;
+                this.title = title;
+                this.viewtype = viewtype;
+                this.type = type;
+                this.content = content;
+                this.source = source;
+            }
+
             public String getSource() {
                 return source;
             }

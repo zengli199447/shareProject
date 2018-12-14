@@ -24,6 +24,7 @@ import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.AdvertisingBuilder;
 import com.example.administrator.sharenebulaproject.widget.CalendarBuilder;
+import com.example.administrator.sharenebulaproject.widget.ViewBuilder;
 import com.qq.e.ads.nativ.NativeExpressADView;
 
 import java.security.InvalidParameterException;
@@ -47,6 +48,19 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private final int height;
     private HashMap<NativeExpressADView, Integer> mAdViewPositionMap = new HashMap<>();
 
+    // 脚布局
+    private final int TYPE_FOOTER = 3;
+    // 当前加载状态，默认为加载完成
+    private int loadState = 2;
+    // 加载完成
+    public final int LOADING_COMPLETE = 2;
+    // 加载到底
+    public final int LOADING_END = 3;
+    // 正在加载
+    public final int LOADING = 1;
+
+    private int topSize = 0;
+
     public DiversifiedAdapter(Context context, List<Object> theArticleList, List<NativeExpressADView> nativeExpressADViewList) {
         this.context = context;
         this.nativeExpressADViewList = nativeExpressADViewList;
@@ -57,18 +71,25 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public int getItemViewType(int position) {
         int Type = -1;
-        Object object = TheArticleList.get(position);
-        if (object instanceof RefreshDateBean) {
-            Type = 1;
-        } else if (object instanceof HotAllDataBean.Result.newsBean) {
-            HotAllDataBean.Result.newsBean newsBean = (HotAllDataBean.Result.newsBean) object;
-            switch (newsBean.getType()) {
-                case 0:
-                    Type = 0;
-                    break;
-                case 2:
-                    Type = 2;
-                    break;
+        if (position == TheArticleList.size()) {
+            Type = 3;
+        } else {
+            Object object = TheArticleList.get(position);
+            if (object instanceof RefreshDateBean) {
+                Type = 1;
+            } else if (object instanceof HotAllDataBean.Result.newsBean) {
+                HotAllDataBean.Result.newsBean newsBean = (HotAllDataBean.Result.newsBean) object;
+                switch (newsBean.getType()) {
+                    case 0:
+                        Type = 0;
+                        break;
+                    case 1:
+                        Type = 0;
+                        break;
+                    case 3:
+                        Type = 2;
+                        break;
+                }
             }
         }
         return Type;
@@ -85,18 +106,20 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_refresh_view, parent, false);
                 break;
             case 2:
-                view = LayoutInflater.from(context).inflate(R.layout.feed_h5_item_placement, null);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.feed_h5_item_placement, null);
+                break;
+            case 3:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_footer_view, parent, false);
                 break;
             default:
                 throw new InvalidParameterException();
         }
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        Object object = TheArticleList.get(position);
+
         int itemViewType = getItemViewType(position);
 
         View layout_after_refresh = holder.itemView.findViewById(R.id.layout_after_refresh);
@@ -105,15 +128,12 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
         View line_placeholder = holder.itemView.findViewById(R.id.line_placeholder);
         View bottom_line = holder.itemView.findViewById(R.id.bottom_line);
 
-        RelativeLayout layout_only_img = holder.itemView.findViewById(R.id.layout_only_img);
         ImageView only_min_img = holder.itemView.findViewById(R.id.only_min_img);
         TextView only_img_title_content = holder.itemView.findViewById(R.id.only_img_title_content);
 
-        LinearLayout layout_only_max_img_news = holder.itemView.findViewById(R.id.layout_only_max_img_news);
         TextView only_max_img_title_content = holder.itemView.findViewById(R.id.only_max_img_title_content);
         ImageView only_max_img = holder.itemView.findViewById(R.id.only_max_img);
 
-        LinearLayout layout_multiple_img_news = holder.itemView.findViewById(R.id.layout_multiple_img_news);
         TextView multiple_img_title_content = holder.itemView.findViewById(R.id.multiple_img_title_content);
         ImageView min_img1 = holder.itemView.findViewById(R.id.min_img1);
         ImageView min_img2 = holder.itemView.findViewById(R.id.min_img2);
@@ -122,27 +142,25 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
         TextView form_to = holder.itemView.findViewById(R.id.form_to);
         TextView reading_count = holder.itemView.findViewById(R.id.reading_count);
         TextView starbean = holder.itemView.findViewById(R.id.starbean);
-        TextView shares_check = holder.itemView.findViewById(R.id.shares_check);
 
         ViewGroup native_outer_view = holder.itemView.findViewById(R.id.native_outer_view);
 
         ImageView advertising_img = holder.itemView.findViewById(R.id.advertising_img);
         TextView advertising_title_content = holder.itemView.findViewById(R.id.advertising_title_content);
 
+        TextView top = holder.itemView.findViewById(R.id.top);
+
+        RelativeLayout progress_bar = holder.itemView.findViewById(R.id.progress_bar);
+        RelativeLayout footer_layout = holder.itemView.findViewById(R.id.footer_layout);
+
+        Object object = null;
+        if (position != TheArticleList.size())
+            object = TheArticleList.get(position);
 
         switch (itemViewType) {
             case 0:
                 HotAllDataBean.Result.newsBean newsBean = (HotAllDataBean.Result.newsBean) object;
-                refreshViewStatus(holder, newsBean.getIfcanmoney(), newsBean.getViewtype());
-                if (newsBean.getType() == 0) {
-//                    if (!newsBean.getSource().equals(form_to.getText().toString()))
-                        form_to.setText(newsBean.getSource());
-//                    if (!new StringBuffer().append("阅读: ").append(newsBean.getAmount_read()).toString().equals(reading_count.getText().toString()))
-                        reading_count.setText(new StringBuffer().append("阅读: ").append(newsBean.getAmount_read()).toString());
-//                    if (!new StringBuffer().append("奖励池: ").append(newsBean.getStarbean()).append("星豆").toString().equals(starbean.getText().toString()))
-                        starbean.setText(new StringBuffer().append("奖励池: ").append(newsBean.getStarbean()).append("星豆").toString());
-                }
-
+                refreshViewStatus(holder, newsBean.getIfcanmoney(), newsBean.getViewtype(), newsBean.getType());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -151,43 +169,72 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
                     }
                 });
 
+                LogUtil.e(TAG, "newsBean.getType() : " + newsBean.getType());
                 switch (newsBean.getType()) {
                     case 0:
+                        if (!newsBean.getSource().equals(form_to.getText().toString()))
+                            form_to.setText(newsBean.getSource());
+                        if (!new StringBuffer().append("阅读: ").append(newsBean.getAmount_read()).toString().equals(reading_count.getText().toString()))
+                            reading_count.setText(new StringBuffer().append("阅读: ").append(newsBean.getAmount_read()).toString());
+                        if (!new StringBuffer().append("奖励池: ").append(newsBean.getStarbean()).append("星豆").toString().equals(starbean.getText().toString()))
+                            starbean.setText(new StringBuffer().append("奖励池: ").append(newsBean.getStarbean()).append("星豆").toString());
+
+                        if ("top".equals(newsBean.getContent())) {
+                            top.setVisibility(View.VISIBLE);
+                            if (position == topSize - 1) {
+                                line_placeholder.setVisibility(View.VISIBLE);
+                                bottom_line.setVisibility(View.GONE);
+                            } else {
+                                line_placeholder.setVisibility(View.GONE);
+                                bottom_line.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            top.setVisibility(View.GONE);
+                            line_placeholder.setVisibility(View.GONE);
+                            bottom_line.setVisibility(View.VISIBLE);
+                        }
                         switch (newsBean.getViewtype()) {
+                            case 0:
                             case 1:
+                                if (!newsBean.getTitle().equals(only_img_title_content.getText().toString()))
+                                    only_img_title_content.setText(newsBean.getTitle());
                                 String[] split = newsBean.getListimg().split(",");
                                 Glide.with(context).load(SystemUtil.JudgeUrl(split[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(only_min_img);
-                                only_img_title_content.setText(newsBean.getTitle());
                                 break;
                             case 2:
+                                if (!newsBean.getTitle().equals(multiple_img_title_content.getText().toString()))
+                                    multiple_img_title_content.setText(newsBean.getTitle());
                                 ViewGroup.LayoutParams minImg1layoutParams = min_img1.getLayoutParams();
+                                ViewGroup.LayoutParams minImg2layoutParams = min_img2.getLayoutParams();
+                                ViewGroup.LayoutParams minImg3layoutParams = min_img3.getLayoutParams();
                                 int width = DataClass.WINDOWS_WIDTH - 30;
                                 minImg1layoutParams.width = SystemUtil.dp2px(context, width / 3);
+                                minImg2layoutParams.width = SystemUtil.dp2px(context, width / 3);
+                                minImg3layoutParams.width = SystemUtil.dp2px(context, width / 3);
                                 min_img1.setLayoutParams(minImg1layoutParams);
-                                min_img2.setLayoutParams(minImg1layoutParams);
-                                min_img3.setLayoutParams(minImg1layoutParams);
+                                min_img2.setLayoutParams(minImg2layoutParams);
+                                min_img3.setLayoutParams(minImg3layoutParams);
 
                                 String[] splitMultiple = newsBean.getListimg().split(",");
                                 Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img1);
                                 Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[1])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img2);
                                 Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[2])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img3);
-
-                                multiple_img_title_content.setText(newsBean.getTitle());
                                 break;
                             case 3:
+                                if (!newsBean.getTitle().equals(only_max_img_title_content.getText().toString()))
+                                    only_max_img_title_content.setText(newsBean.getTitle());
                                 String[] splitMax = newsBean.getListimg().split(",");
                                 Glide.with(context).load(SystemUtil.JudgeUrl(splitMax[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(only_max_img);
-                                only_max_img_title_content.setText(newsBean.getTitle());
                                 break;
                         }
                         break;
                     case 1:
+                        if (!newsBean.getTitle().equals(advertising_title_content.getText().toString()))
+                            advertising_title_content.setText(newsBean.getTitle());
                         String[] split = newsBean.getListimg().split(",");
                         Glide.with(context).load(SystemUtil.JudgeUrl(split[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(advertising_img);
-                        advertising_title_content.setText(newsBean.getTitle());
                         break;
                 }
-
                 break;
             case 1:
                 RefreshDateBean refreshDateBean = (RefreshDateBean) object;
@@ -210,11 +257,6 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 });
                 break;
             case 2:
-//                BaiduNativeAdPlacement placement = new BaiduNativeAdPlacement();
-//                placement.setSessionId(1); // 设置页面id，不同listview不同，从1开始的正整数，可选
-//                placement.setPositionId(1); // 设置广告在页面的楼层，从1开始的正整数，可选
-//                placement.setApId(AppKeyConfig.ADVERTISING_BAIDU_ADVERTISING_RECYCLER_ID);
-//                AdvertisingBuilder.RecycleAdvertising(context, native_outer_view, placement);
                 try {
                     native_outer_view.removeAllViews();
                     NativeExpressADView nativeExpressADView = nativeExpressADViewList.get(position);
@@ -225,7 +267,22 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
                     LogUtil.e(TAG, "Exception : " + e.toString());
                 }
                 break;
-
+            case 3:
+                footer_layout.setVisibility(View.VISIBLE);
+                switch (loadState) {
+                    case LOADING: // 正在加载
+                        progress_bar.setVisibility(View.VISIBLE);
+                        break;
+                    case LOADING_COMPLETE:// 加载完成
+                        progress_bar.setVisibility(View.INVISIBLE);
+                        break;
+                    case LOADING_END:// 加载到底
+                        progress_bar.setVisibility(View.GONE);
+                        break;
+                    default:
+                        break;
+                }
+                break;
         }
     }
 
@@ -244,25 +301,36 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return TheArticleList.size() == 0 ? 0 : TheArticleList.size();
+        return TheArticleList.size() == 0 ? 0 : TheArticleList.size() + 1;
     }
 
-    private void refreshViewStatus(MyViewHolder holder, int shareStatus, int viewType) {
+    private void refreshViewStatus(MyViewHolder holder, int shareStatus, int viewType, int itemType) {
         switch (viewType) {
+            case 0:
             case 1:
                 holder.itemView.findViewById(R.id.layout_only_img).setVisibility(View.VISIBLE);
-                holder.itemView.findViewById(R.id.layout_only_max_img_news).setVisibility(View.GONE);
                 holder.itemView.findViewById(R.id.layout_multiple_img_news).setVisibility(View.GONE);
+                holder.itemView.findViewById(R.id.layout_only_max_img_news).setVisibility(View.GONE);
                 break;
             case 2:
                 holder.itemView.findViewById(R.id.layout_only_img).setVisibility(View.GONE);
-                holder.itemView.findViewById(R.id.layout_only_max_img_news).setVisibility(View.VISIBLE);
-                holder.itemView.findViewById(R.id.layout_multiple_img_news).setVisibility(View.GONE);
+                holder.itemView.findViewById(R.id.layout_multiple_img_news).setVisibility(View.VISIBLE);
+                holder.itemView.findViewById(R.id.layout_only_max_img_news).setVisibility(View.GONE);
                 break;
             case 3:
                 holder.itemView.findViewById(R.id.layout_only_img).setVisibility(View.GONE);
-                holder.itemView.findViewById(R.id.layout_only_max_img_news).setVisibility(View.GONE);
-                holder.itemView.findViewById(R.id.layout_multiple_img_news).setVisibility(View.VISIBLE);
+                holder.itemView.findViewById(R.id.layout_multiple_img_news).setVisibility(View.GONE);
+                holder.itemView.findViewById(R.id.layout_only_max_img_news).setVisibility(View.VISIBLE);
+                break;
+        }
+        switch (itemType) {
+            case 0:
+                holder.itemView.findViewById(R.id.layout_self_built_advertising).setVisibility(View.GONE);
+                holder.itemView.findViewById(R.id.news_layout).setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                holder.itemView.findViewById(R.id.layout_self_built_advertising).setVisibility(View.VISIBLE);
+                holder.itemView.findViewById(R.id.news_layout).setVisibility(View.GONE);
                 break;
         }
         if (shareStatus == 1) {
@@ -278,6 +346,11 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
         notifyItemInserted(position);
     }
 
+    //删除数据
+    public void deletData(int position) {
+        TheArticleList.remove(position);
+        notifyItemRemoved(position);
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -311,6 +384,15 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void refreshViewStatus(int indexRefreshStatus, long refreshTime) {
         this.indexRefreshStatus = indexRefreshStatus;
         this.refreshTime = refreshTime;
+    }
+
+    public void setLoadState(int loadState) {
+        this.loadState = loadState;
+        notifyDataSetChanged();
+    }
+
+    public void refreshTopSize(int size) {
+        this.topSize = size;
     }
 
 }

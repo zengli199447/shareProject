@@ -1,7 +1,9 @@
 package com.example.administrator.sharenebulaproject.widget;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Handler;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.global.MyApplication;
+import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.ui.activity.about.PublicWebActivity;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
@@ -111,13 +114,19 @@ public class WebViewBuilder {
                 progressDialog.show();
         }
 
+        @SuppressLint("WrongConstant")
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url.equals("http://www.google.com/")) {
                 toastUtil.showToast("国内不能访问google,拦截该url");
                 return true;//表示我已经处理过了
             }
-            return super.shouldOverrideUrlLoading(view, url);
+//            return super.shouldOverrideUrlLoading(view, url);
+            Intent intent = new Intent(context, PublicWebActivity.class);
+            intent.setFlags(EventCode.EXTERNAL_LINKS);
+            intent.putExtra("url", url);
+            context.startActivity(intent);
+            return true;
         }
 
         @Override

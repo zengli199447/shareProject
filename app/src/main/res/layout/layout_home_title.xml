@@ -51,7 +51,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp10"
-            android:background="@drawable/awards_show" />
+            android:background="@drawable/awards_show_other" />
 
     </RelativeLayout>
 

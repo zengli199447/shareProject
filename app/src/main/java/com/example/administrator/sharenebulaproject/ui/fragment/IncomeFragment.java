@@ -1,10 +1,14 @@
 package com.example.administrator.sharenebulaproject.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +29,7 @@ import com.example.administrator.sharenebulaproject.ui.view.AutoExpandableListVi
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
+import com.example.administrator.sharenebulaproject.widget.MediaPlayBuilder;
 import com.example.administrator.sharenebulaproject.widget.PickerViewBuilder;
 import com.google.gson.Gson;
 
@@ -59,6 +64,8 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
     TextView income_permissions;
     @BindView(R.id.income_my_share)
     TextView income_my_share;
+    @BindView(R.id.come_show_logo_prompt)
+    ImageView come_show_logo_prompt;
 
     private ProgressDialog progressDialog;
     private String todayChar = "";
@@ -66,6 +73,7 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
     private PickerViewBuilder pickerViewBuilder;
     private String queryTime = "今天";
     private List<IncomeNetBean.ResultBean.MoneyindetailBean> moneyindetail;
+    private MediaPlayBuilder mediaPlayBuilder;
 
     @Override
     protected int getLayoutId() {
@@ -76,11 +84,12 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
     protected void initClass() {
         pickerViewBuilder = new PickerViewBuilder(getActivity());
         progressDialog = ShowDialog.getInstance().showProgressStatus(getActivity(), getString(R.string.progress));
+        mediaPlayBuilder = new MediaPlayBuilder();
     }
 
     @Override
     protected void initData() {
-//        initNetDataWork("");
+
     }
 
     @Override
@@ -105,13 +114,10 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void registerEvent(CommonEvent commonevent) {
-        switch (commonevent.getCode()) {
-//            case EventCode.REFRESH_BRANCH:
-//                initNetDataWork("");
-//                break;
-        }
+
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -136,6 +142,7 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
         initNetDataWork(content);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
         Intent settlementLogIntent = new Intent(getActivity(), SettlementLogActivity.class);
@@ -150,9 +157,37 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
 
     }
 
+    private void initAdapter() {
+        IncomeAdapter incomeAdapter = new IncomeAdapter(getActivity(), moneyindetail);
+        income_expand_list.setAdapter(incomeAdapter);
+        incomeAdapter.notifyDataSetChanged();
+        SystemUtil.setExpandableListViewHeight(income_expand_list);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initNetDataWork("");
+        }
+        LogUtil.e(TAG, "hidden : " + hidden);
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void dispatchMessage(Message msg) {
+            super.dispatchMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    come_show_logo_prompt.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    };
+
     //获取收入
     private void initNetDataWork(String searchdate) {
-//        progressDialog.show();
         HashMap map = new HashMap<>();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("action", DataClass.MONEY_IN_GET);
@@ -171,6 +206,11 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
                         if (incomeNetBean.getStatus() == 1) {
                             IncomeNetBean.ResultBean result = incomeNetBean.getResult();
                             moneyindetail = result.getMoneyindetail();
+                            if (result.getIs_inmoney() > 0) {
+                                come_show_logo_prompt.setVisibility(View.VISIBLE);
+                                mediaPlayBuilder.playFromRawFile(getActivity());
+                                handler.sendEmptyMessageDelayed(0, 2000);
+                            }
                             initAdapter();
                             SystemUtil.textMagicTool(getActivity(), all_icome, result.getMoneyin_all(), getString(R.string.money_all), R.dimen.dp20, R.dimen.dp12, R.color.motion_red, R.color.black_overlay, "\n");
                             IncomeNetBean.ResultBean.DayChangeBean day_change = result.getDay_change();
@@ -212,22 +252,5 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
                     }
                 }));
     }
-
-    private void initAdapter() {
-        IncomeAdapter incomeAdapter = new IncomeAdapter(getActivity(), moneyindetail);
-        income_expand_list.setAdapter(incomeAdapter);
-        incomeAdapter.notifyDataSetChanged();
-        SystemUtil.setExpandableListViewHeight(income_expand_list);
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            initNetDataWork("");
-        }
-        LogUtil.e(TAG, "hidden : " + hidden);
-    }
-
 
 }

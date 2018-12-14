@@ -1,5 +1,6 @@
 package com.example.administrator.sharenebulaproject.ui.activity.certification;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -215,6 +216,7 @@ public class GeneralActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

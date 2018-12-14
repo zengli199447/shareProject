@@ -44,6 +44,15 @@ public class IncomeNetBean {
         private List<MoneyindetailBean> moneyindetail;
         private String month_current_total;
         private String today_total;
+        private int is_inmoney;
+
+        public int getIs_inmoney() {
+            return is_inmoney;
+        }
+
+        public void setIs_inmoney(int is_inmoney) {
+            this.is_inmoney = is_inmoney;
+        }
 
         public String getMonth_current_total() {
             return month_current_total;

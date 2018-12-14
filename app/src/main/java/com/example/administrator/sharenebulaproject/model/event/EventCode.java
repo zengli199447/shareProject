@@ -98,5 +98,8 @@ public class EventCode {
 
     public static final int REFRESH_NEWS = 1040;
 
+    public static final int ADVERTISING = 1041;
+
+    public static final int EXTERNAL_LINKS = 1042;
 
 }

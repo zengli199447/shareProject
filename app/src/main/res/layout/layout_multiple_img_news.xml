@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/layout_multiple_img_news"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -16,17 +16,17 @@
 
 
     <LinearLayout
-        android:layout_marginTop="@dimen/dp10"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal">
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/min_img1"
             android:layout_width="110dp"
             android:layout_height="100dp"
-            android:background="@drawable/banner_off" />
+            android:background="@drawable/banner_off"
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/min_img2"
@@ -34,15 +34,15 @@
             android:layout_height="100dp"
             android:layout_marginLeft="@dimen/dp5"
             android:layout_marginRight="@dimen/dp5"
-            android:scaleType="centerCrop"
-            android:background="@drawable/banner_off" />
+            android:background="@drawable/banner_off"
+            android:scaleType="centerCrop" />
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/min_img3"
             android:layout_width="110dp"
             android:layout_height="100dp"
-            android:background="@drawable/banner_off" />
+            android:background="@drawable/banner_off"
+            android:scaleType="centerCrop" />
 
     </LinearLayout>
 

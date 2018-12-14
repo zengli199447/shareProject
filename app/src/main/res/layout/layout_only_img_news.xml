@@ -6,25 +6,25 @@
     android:orientation="vertical">
 
 
-        <ImageView
-            android:id="@+id/only_min_img"
-            android:layout_width="110dp"
-            android:layout_height="@dimen/dp80"
-            android:background="@drawable/banner_off"
-            android:scaleType="centerCrop" />
+    <ImageView
+        android:id="@+id/only_min_img"
+        android:layout_width="110dp"
+        android:layout_height="@dimen/dp80"
+        android:background="@drawable/banner_off"
+        android:scaleType="centerCrop" />
 
-        <TextView
-            android:layout_marginLeft="@dimen/dp10"
-            android:id="@+id/only_img_title_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/only_min_img"
-            android:gravity="center_vertical"
-            android:lineSpacingExtra="@dimen/dp5"
-            android:text="标题"
-            android:textColor="@color/black_"
-            android:textSize="@dimen/dp16" />
 
+    <TextView
+        android:id="@+id/only_img_title_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_toRightOf="@id/only_min_img"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="@dimen/dp5"
+        android:text="标题"
+        android:textColor="@color/black_"
+        android:textSize="@dimen/dp16" />
 
 
 </RelativeLayout>
