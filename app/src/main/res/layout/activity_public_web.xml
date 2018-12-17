@@ -10,11 +10,11 @@
 
     <RelativeLayout
         android:id="@+id/advertising_layout"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp150"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/advertising"
@@ -23,10 +23,10 @@
 
         <View
             android:id="@+id/advertising_close"
-            android:background="@drawable/close_icon"
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp30"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:background="@drawable/close_icon" />
 
     </RelativeLayout>
 

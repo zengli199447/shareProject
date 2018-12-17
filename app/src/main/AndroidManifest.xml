@@ -154,6 +154,7 @@
 
         <activity
             android:name=".ui.activity.about.PublicWebActivity"
+            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden"
             android:theme="@style/MainTheme" />
 
         <activity

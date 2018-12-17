@@ -5,9 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -20,12 +20,9 @@ import android.widget.TextView;
 import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.base.BaseActivity;
 import com.example.administrator.sharenebulaproject.global.DataClass;
-import com.example.administrator.sharenebulaproject.model.bean.DailyNetBean;
-import com.example.administrator.sharenebulaproject.model.bean.MineInfoNetBean;
 import com.example.administrator.sharenebulaproject.model.bean.NewContentNetBean;
 import com.example.administrator.sharenebulaproject.model.bean.TextExplainsNetBean;
 import com.example.administrator.sharenebulaproject.model.bean.UpLoadStatusNetBean;
-import com.example.administrator.sharenebulaproject.model.bean.UserInfoBean;
 import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.rxtools.RxBus;
@@ -103,6 +100,8 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initClass() {
+        View decorView = getWindow().getDecorView();
+        decorView.getViewTreeObserver().addOnGlobalLayoutListener(ViewBuilder.getGlobalLayoutListener(decorView, findViewById(Window.ID_ANDROID_CONTENT)));
         progressDialog = ShowDialog.getInstance().showProgressStatus(this, getString(R.string.progress));
         webViewBuilder = new WebViewBuilder(web_view, progressDialog, toastUtil, this, handler);
         customPopupWindow = new CustomPopupWindow(this);
