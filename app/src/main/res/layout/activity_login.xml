@@ -24,8 +24,6 @@
             android:textSize="@dimen/dp14" />
 
         <EditText
-            android:singleLine="true"
-            android:numeric="integer"
             android:id="@+id/edit_phone_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,6 +31,8 @@
             android:layout_toRightOf="@+id/phone_text"
             android:background="@color/transparent"
             android:hint="@string/hint_number"
+            android:numeric="integer"
+            android:singleLine="true"
             android:textColorHint="@color/gray_light"
             android:textCursorDrawable="@drawable/corners_edittext_cursor"
             android:textSize="16dp" />
@@ -210,15 +210,15 @@
                     android:id="@+id/wechat"
                     android:layout_width="@dimen/dp50"
                     android:layout_height="@dimen/dp50"
-                    android:layout_marginRight="@dimen/dp50"
                     android:background="@drawable/wechat" />
 
                 <View
                     android:id="@+id/qq"
                     android:layout_width="@dimen/dp50"
                     android:layout_height="@dimen/dp50"
-                    android:layout_marginLeft="@dimen/dp50"
-                    android:background="@drawable/qq" />
+                    android:layout_marginLeft="@dimen/dp100"
+                    android:background="@drawable/qq"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

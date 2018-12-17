@@ -13,7 +13,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 
-import com.example.administrator.sharenebulaproject.R;
+import com.example.administrator.sharenebulaproject.global.DataClass;
+import com.example.administrator.sharenebulaproject.utils.LogUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +24,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
-
 /**
  * Created by Administrator on 2018/9/17.
  * 获取当前坐标（城市）
@@ -31,17 +31,14 @@ import java.util.List;
 
 public class LocationUtils {
 
-    public String TAG = getClass().getSimpleName();
-
-    private Context context;
-
-    //public static String cityName = "深圳";  //城市名
     public static String cityName;  //城市名
 
     private static Geocoder geocoder;   //此对象能通过经纬度来获取相应的城市等信息
+    private static String queryedCity;
 
     /**
      * 通过地理坐标获取城市名  其中CN分别是city和name的首字母缩写
+     *
      * @param context
      */
     public static String getCNBylocation(Context context) {
@@ -63,19 +60,6 @@ public class LocationUtils {
         criteria.setPowerRequirement(Criteria.POWER_LOW);   //低功耗
 
         //通过最后一次的地理位置来获得Location对象
-        @SuppressLint("MissingPermission")
-        Location location = locationManager.getLastKnownLocation(provider);
-
-        String queryed_name = updateWithNewLocation(location);
-        if ((queryed_name != null) && (0 != queryed_name.length())) {
-            LogUtil.e("LocationUtils","queryed_name : " + queryed_name);
-            cityName = new StringBuffer().append(queryed_name).append(context.getString(R.string.the_city)).toString();
-        }
-
-        /*
-         * 第二个参数表示更新的周期，单位为毫秒；第三个参数的含义表示最小距离间隔，单位是米
-         * 设定每30秒进行一次自动定位
-         */
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -84,6 +68,22 @@ public class LocationUtils {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            return "";
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        queryedCity = updateWithNewLocation(location);
+        if (queryedCity.isEmpty())
+            queryedCity = GetAddr(location.getLatitude(), location.getLongitude());
+        if ((queryedCity != null) && (0 != queryedCity.length())) {
+            cityName = new StringBuffer().append(queryedCity).append("市").toString();
+            DataClass.CNBYLOCATION = cityName;
+        }
+
+        /*
+         * 第二个参数表示更新的周期，单位为毫秒；第三个参数的含义表示最小距离间隔，单位是米
+         * 设定每30秒进行一次自动定位
+         */
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return "";
         }
         locationManager.requestLocationUpdates(provider, 30000, 50, locationListener);
@@ -97,10 +97,11 @@ public class LocationUtils {
      */
     private final static LocationListener locationListener = new LocationListener() {
         String tempCityName;
+
         public void onLocationChanged(Location location) {
 
             tempCityName = updateWithNewLocation(location);
-            if((tempCityName != null) && (tempCityName.length() != 0)){
+            if ((tempCityName != null) && (tempCityName.length() != 0)) {
 
                 cityName = tempCityName;
             }
@@ -123,6 +124,7 @@ public class LocationUtils {
 
     /**
      * 更新location
+     *
      * @param location
      * @return cityName
      */
@@ -135,17 +137,14 @@ public class LocationUtils {
             lat = location.getLatitude();
             lng = location.getLongitude();
         } else {
-
             System.out.println("无法获取地理信息");
+            LogUtil.e("LocationUtils", "无法获取地理信息");
         }
-
         try {
-
             addList = geocoder.getFromLocation(lat, lng, 1);    //解析经纬度
-
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            LogUtil.e("LocationUtils", "IOException : " + e.toString());
         }
         if (addList != null && addList.size() > 0) {
             for (int i = 0; i < addList.size(); i++) {
@@ -153,9 +152,8 @@ public class LocationUtils {
                 mcityName += add.getLocality();
             }
         }
-        if(mcityName.length()!=0){
-
-            return mcityName.substring(0, (mcityName.length()-1));
+        if (mcityName.length() != 0) {
+            return mcityName.substring(0, (mcityName.length() - 1));
         } else {
             return mcityName;
         }
@@ -163,38 +161,31 @@ public class LocationUtils {
 
     /**
      * 通过经纬度获取地址信息的另一种方法
+     *
      * @param latitude
      * @param longitude
      * @return 城市名
      */
-    public static String GetAddr(String latitude, String longitude) {
+    public static String GetAddr(double latitude, double longitude) {
         String addr = "";
-
         /*
          * 也可以是http://maps.google.cn/maps/geo?output=csv&key=abcdef&q=%s,%s，不过解析出来的是英文地址
          * 密钥可以随便写一个key=abc
          * output=csv,也可以是xml或json，不过使用csv返回的数据最简洁方便解析
          */
-        String url = String.format(
-                "http://ditu.google.cn/maps/geo?output=csv&key=abcdef&q=%s,%s",
-                latitude, longitude);
+        String url = String.format("http://ditu.google.cn/maps/geo?output=csv&key=abcdef&q=%s,%s", latitude, longitude);
         URL myURL = null;
         URLConnection httpsConn = null;
         try {
-
             myURL = new URL(url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
         }
-
         try {
-
             httpsConn = (URLConnection) myURL.openConnection();
-
             if (httpsConn != null) {
-                InputStreamReader insr = new InputStreamReader(
-                        httpsConn.getInputStream(), "UTF-8");
+                InputStreamReader insr = new InputStreamReader(httpsConn.getInputStream(), "UTF-8");
                 BufferedReader br = new BufferedReader(insr);
                 String data = null;
                 if ((data = br.readLine()) != null) {

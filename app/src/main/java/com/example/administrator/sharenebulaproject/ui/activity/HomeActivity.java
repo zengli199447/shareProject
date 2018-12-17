@@ -152,6 +152,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     protected void initClass() {
+        MyApplication.executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                LocationUtils.getCNBylocation(HomeActivity.this);
+            }
+        });
         progressDialog = ShowDialog.getInstance().showProgressStatus(this, getString(R.string.progress));
         umShareListenerBuilder = new UmShareListenerBuilder(this, toastUtil);
     }
@@ -163,7 +169,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             initNetDataWork();
         SystemUtil.initWindowsManagerWidth(this);
         try {
-            DataClass.CNBYLOCATION = LocationUtils.getCNBylocation(this);
             for (int i = 0; i < DataClass.ALL_TYPE_TITLE.size(); i++) {
                 TheNewTypeNetBean.ResultBean.AllBean allBean = DataClass.ALL_TYPE_TITLE.get(i);
                 if (getString(R.string.local).equals(allBean.getCatename())) {

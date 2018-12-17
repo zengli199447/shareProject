@@ -371,6 +371,8 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
                     public void onNext(UpLoadStatusNetBean upLoadStatusNetBean) {
                         if (upLoadStatusNetBean.getStatus() == 1) {
                             toastUtil.showToast("分享成功");
+                            if (webViewBuilder != null)
+                                webViewBuilder.shareRefeshAdShow();
                             RxBus.getDefault().post(new CommonEvent(EventCode.REFRESH_BRANCH));
                         } else {
                             toastUtil.showToast(upLoadStatusNetBean.getMessage());

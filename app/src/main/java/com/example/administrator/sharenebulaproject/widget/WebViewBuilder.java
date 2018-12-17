@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -182,6 +183,15 @@ public class WebViewBuilder {
         public void showJsText(String text) {
             web_view.loadUrl("javascript:jsText('" + text + "')");
         }
+    }
+
+    public void shareRefeshAdShow() {
+        web_view.evaluateJavascript("javascript:showad()", new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String value) {
+                LogUtil.e(TAG,"调用成功");
+            }
+        });
     }
 
 
