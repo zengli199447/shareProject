@@ -64,10 +64,10 @@ public class DataClass {
     //用户登陆ID
     public static String USERID = "";
     //用户分享后缀
-    public static String USERID_SHARE = "&userid_share=" + USERID;
     //登陆
     public static String LOGIN = "user_login_get";
     //获取验证码
+    public static String USERID_SHARE = "&userid_share=" + USERID;
     public static String GET_CODE = "get_code";
     //获取首页数据
     public static String HOMEPAGE_GET = "homepage_get";
@@ -162,6 +162,8 @@ public class DataClass {
     public static String CNBYLOCATION = "武汉市";
 
     public static int DefaultInformationFlow = 11;
+
+    public static boolean WEBSTATUS;
 
     public DataManager dataManager;
 

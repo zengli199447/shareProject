@@ -7,19 +7,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.administrator.sharenebulaproject.R;
+import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.global.MyApplication;
 import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.ui.activity.about.PublicWebActivity;
@@ -27,8 +25,15 @@ import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.ToastUtil;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2018/8/24.
@@ -74,7 +79,7 @@ public class WebViewBuilder {
     private WebChromeClient webChromeClient = new WebChromeClient() {
         //不支持js的alert弹窗，需要自己监听然后通过dialog弹窗
         @Override
-        public boolean onJsAlert(WebView webView, String url, String message, JsResult result) {
+        public boolean onJsAlert(WebView webView, String url, String message, com.tencent.smtt.export.external.interfaces.JsResult result) {
             AlertDialog.Builder localBuilder = new AlertDialog.Builder(webView.getContext());
             localBuilder.setMessage(message).setPositiveButton("确定", null);
             localBuilder.setCancelable(false);
@@ -122,25 +127,29 @@ public class WebViewBuilder {
                 toastUtil.showToast("国内不能访问google,拦截该url");
                 return true;//表示我已经处理过了
             }
-//            return super.shouldOverrideUrlLoading(view, url);
-            Intent intent = new Intent(context, PublicWebActivity.class);
-            intent.setFlags(EventCode.EXTERNAL_LINKS);
-            intent.putExtra("url", url);
-            context.startActivity(intent);
-            return true;
+
+            LogUtil.e(TAG, "url : " + url);
+            if (!DataClass.WEBSTATUS) {
+                DataClass.WEBSTATUS = true;
+                Intent intent = new Intent(context, PublicWebActivity.class);
+                intent.setFlags(EventCode.EXTERNAL_LINKS);
+                intent.putExtra("url", url);
+                context.startActivity(intent);
+                LogUtil.e(TAG, "oldUrlStatus- : " + DataClass.WEBSTATUS);
+                return true;
+            } else {
+                view.loadUrl(url);
+                LogUtil.e(TAG, "oldUrlStatus : " + DataClass.WEBSTATUS);
+                return true;
+            }
+
         }
 
-        @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-            super.onReceivedSslError(view, handler, error);
-            handler.proceed();  // 接受所有网站的证书
-        }
     };
 
     public void loadWebView(String html, boolean status) {
         if (status) {
             web_view.loadUrl(html);
-            LogUtil.e(TAG, "loadUrl");
         } else {
 //            web_view.loadData( html , "text/html; charset=UTF-8", null);//这种写法可以正确解码
             web_view.loadDataWithBaseURL(null, "<html><body>" + html + "</body></html>", "text/html", "utf-8", null);
@@ -176,12 +185,33 @@ public class WebViewBuilder {
         @JavascriptInterface
         public void newsshare(String text) {
             handler.sendEmptyMessage(0);
-            Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         }
 
         @JavascriptInterface
         public void showJsText(String text) {
             web_view.loadUrl("javascript:jsText('" + text + "')");
+        }
+
+        @JavascriptInterface
+        public void nologin(String text) {
+            Message message = new Message();
+            message.what = 1;
+            message.obj = text;
+            handler.sendMessage(message);
+        }
+
+        @JavascriptInterface
+        public void showpic(String url, String string) {
+            int index = 0;
+            ArrayList<String> strings = new ArrayList<>();
+            String[] split = url.split(",");
+            for (int i = 0; i < split.length; i++) {
+                if (string.equals(split[i]))
+                    index = i;
+                strings.add(split[i]);
+            }
+            MatisseBuilder.ImageTheExhibition(context, strings, false, Integer.valueOf(index));
         }
     }
 
@@ -189,10 +219,18 @@ public class WebViewBuilder {
         web_view.evaluateJavascript("javascript:showad()", new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String value) {
-                LogUtil.e(TAG,"调用成功");
+                LogUtil.e(TAG, "调用成功");
             }
         });
     }
 
+    public void shareLoginUser(String id) {
+        web_view.evaluateJavascript("javascript:love('" + id + "')", new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String value) {
+                LogUtil.e(TAG, "调用成功");
+            }
+        });
+    }
 
 }

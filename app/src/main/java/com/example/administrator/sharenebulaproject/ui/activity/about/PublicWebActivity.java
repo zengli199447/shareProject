@@ -1,14 +1,15 @@
 package com.example.administrator.sharenebulaproject.ui.activity.about;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.rxtools.RxBus;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
+import com.example.administrator.sharenebulaproject.ui.activity.LoginActivity;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.CustomPopupWindow;
@@ -37,6 +39,7 @@ import com.example.administrator.sharenebulaproject.widget.UmShareListenerBuilde
 import com.example.administrator.sharenebulaproject.widget.ViewBuilder;
 import com.example.administrator.sharenebulaproject.widget.WebViewBuilder;
 import com.google.gson.Gson;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -78,12 +81,18 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
     private String shareNewsUrl;
     private Bitmap bitmap;
     private ProgressDialog progressDialog;
+    public boolean status;
+    private ShowDialog instance;
 
     @Override
     protected void registerEvent(CommonEvent commonevent) {
         switch (commonevent.getCode()) {
             case EventCode.USERID_REFRESH:
                 shareNewsUrl = shareNewsUrl + commonevent.getTemp_str();
+                webViewBuilder.shareLoginUser(commonevent.getTemp_str());
+                break;
+            case EventCode.LOGIN:
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
     }
@@ -100,9 +109,11 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initClass() {
+        LogUtil.e(TAG,"id : " + DataClass.USERID);
         View decorView = getWindow().getDecorView();
         decorView.getViewTreeObserver().addOnGlobalLayoutListener(ViewBuilder.getGlobalLayoutListener(decorView, findViewById(Window.ID_ANDROID_CONTENT)));
-        progressDialog = ShowDialog.getInstance().showProgressStatus(this, getString(R.string.progress));
+        instance = ShowDialog.getInstance();
+        progressDialog = instance.showProgressStatus(this, getString(R.string.progress));
         webViewBuilder = new WebViewBuilder(web_view, progressDialog, toastUtil, this, handler);
         customPopupWindow = new CustomPopupWindow(this);
         umShareListenerBuilder = new UmShareListenerBuilder(this, toastUtil);
@@ -148,7 +159,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
                 title_name.setText(getString(R.string.daily_news));
 //                initNetDataWork();
 //                title_about_img.setBackground(getResources().getDrawable(R.drawable.share_icon));
-                webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").toString(), true);
+                webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").append("&userid=").append(DataClass.USERID).toString(), true);
                 break;
             case EventCode.TEXT_WEB:
                 web_layout.setVisibility(View.VISIBLE);
@@ -189,7 +200,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
             case EventCode.ADVERTISING:
                 web_layout.setVisibility(View.VISIBLE);
                 title_name.setText(getString(R.string.advertising));
-                webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").toString(), true);
+                webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").append("&userid=").append(DataClass.USERID).toString(), true);
                 break;
             case EventCode.EXTERNAL_LINKS:
                 web_layout.setVisibility(View.VISIBLE);
@@ -242,8 +253,10 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
                 case 0:
                     ShowShareSelect();
                     break;
+                case 1:
+                    instance.showGeneralConfirmDialog(PublicWebActivity.this, EventCode.LOGIN, msg.obj.toString());
+                    break;
             }
-
         }
     };
 
@@ -272,6 +285,25 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void successful() {
         initShareDataWork();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (web_view.canGoBack()) {
+                web_view.goBack();
+            } else {
+                finish();
+            }
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DataClass.WEBSTATUS = false;
     }
 
     //获取文章详情

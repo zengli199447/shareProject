@@ -26,6 +26,8 @@ import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.widget.TTAdManagerHolder;
 import com.example.administrator.sharenebulaproject.widget.UmPushBuilder;
 import com.luoxudong.app.threadpool.ThreadPoolHelp;
+import com.tencent.stat.StatConfig;
+import com.tencent.stat.StatService;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
@@ -60,6 +62,13 @@ public class MyApplication extends Application {
         initUm();
 //        new UmPushBuilder(this).initPushSetting();
         TTAdManagerHolder.getInstance(this);
+        //统计初始化
+        initMTA();
+    }
+
+    private void initMTA() {
+        StatConfig.setDebugEnable(true);
+        StatService.registerActivityLifecycleCallbacks(this);
     }
 
     private void initUm() {

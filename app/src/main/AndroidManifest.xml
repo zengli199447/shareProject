@@ -297,6 +297,20 @@
 
         <service android:name=".widget.csj.AppDownloadService" />
 
+        <provider
+            android:name="com.tencent.mid.api.MidProvider"
+            android:authorities="com.tencent.mtademo.TENCENT.MID.V3"
+            android:exported="true" >
+        </provider>
+
+        <meta-data
+            android:name="TA_APPKEY"
+            android:value="AGC4XP8C27MF" />
+        <!-- 请将value改为APP的发布渠道（市场） < -->
+        <meta-data
+            android:name="InstallChannel"
+            android:value="蒲公英" />
+
 
     </application>
 

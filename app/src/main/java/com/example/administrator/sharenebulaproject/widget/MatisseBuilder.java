@@ -70,13 +70,25 @@ public class MatisseBuilder {
         return widget;
     }
 
-    public interface selectMediaListrner{
+    //画廊
+    public static void ImageTheExhibition(Context context, ArrayList<String> imageList, final boolean isCheckable, int position) {
+        Album.gallery(context).currentPosition(position).checkedList(imageList).checkable(isCheckable)
+                .onResult(new Action<ArrayList<String>>() {
+                    @Override
+                    public void onAction(int requestCode, @NonNull ArrayList<String> result) {
+
+                    }
+                })
+                .start();
+    }
+
+    public interface selectMediaListrner {
         void selectMediaListener(String path);
     }
 
     public selectMediaListrner returnSelectMedia;
 
-    public void setSelectMediaListener(selectMediaListrner returnSelectMedia){
+    public void setSelectMediaListener(selectMediaListrner returnSelectMedia) {
         this.returnSelectMedia = returnSelectMedia;
     }
 

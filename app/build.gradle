@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "com.example.administrator.sharenebulaproject"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -34,11 +34,16 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
 
+        manifestPlaceholders = [
+                MTA_APPKEY:"AGC4XP8C27MF",
+                MTA_CHANNEL:"蒲公英"
+        ]
+
     }
     buildTypes {
         release {
             minifyEnabled false
-            debuggable false
+//            debuggable false
             signingConfig signingConfigs.config
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -46,7 +51,7 @@ android {
 
         debug {
             signingConfig signingConfigs.config
-            debuggable false
+//            debuggable false
             shrinkResources false
         }
         sourceSets {
@@ -110,10 +115,8 @@ dependencies {
     compile 'com.yanzhenjie:sofia:1.0.5'
     compile 'com.android.support:cardview-v7:26.+'
     compile 'com.contrarywind:Android-PickerView:3.2.5'
-    //    compile 'com.zhihu.android:matisse:0.4.3'
     compile 'com.github.jiangdongguo:OkCamera:1.0'
     compile project(':camera')
-    //    compile 'com.yanzhenjie:mediascanner:1.0.3'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.3.0'
     compile project(':album')

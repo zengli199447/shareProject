@@ -3,7 +3,6 @@ package com.example.administrator.sharenebulaproject.ui.activity.about;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -17,6 +16,7 @@ import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.widget.WebViewBuilder;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.Set;
 

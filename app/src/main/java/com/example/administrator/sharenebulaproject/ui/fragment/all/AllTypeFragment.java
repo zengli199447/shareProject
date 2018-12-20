@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -47,6 +46,7 @@ import com.example.administrator.sharenebulaproject.widget.UmShareListenerBuilde
 import com.example.administrator.sharenebulaproject.widget.ViewBuilder;
 import com.example.administrator.sharenebulaproject.widget.WebViewBuilder;
 import com.google.gson.Gson;
+import com.tencent.smtt.sdk.WebView;
 import com.umeng.commonsdk.debug.E;
 
 import java.util.ArrayList;

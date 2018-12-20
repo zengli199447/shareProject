@@ -102,4 +102,7 @@ public class EventCode {
 
     public static final int EXTERNAL_LINKS = 1042;
 
+    public static final int LOGIN = 1043;
+
+
 }

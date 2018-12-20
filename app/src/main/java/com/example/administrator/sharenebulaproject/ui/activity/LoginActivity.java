@@ -78,6 +78,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private String gender_external;
     private String image_url_external;
 
+    @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

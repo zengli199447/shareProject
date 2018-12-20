@@ -11,6 +11,7 @@ import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.GlideAlbumLoader;
+import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.yanzhenjie.album.Album;
@@ -55,15 +56,23 @@ public class InitializeService extends IntentService {
 //        initCrashHandler();
         //初始化网络变化监听服务
         initNetworkListenService();
-        //极光初始化
-        initJiguang();
-
+        //X5内核配置
+        initTbs();
     }
 
+    private void initTbs() {
+        QbSdk.PreInitCallback preInitCallback = new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
 
+            }
 
-    private void initJiguang() {
-//        JShareInterface.init(this);
+            @Override
+            public void onViewInitFinished(boolean status) {
+                LogUtil.e(TAG, "X5 内核状态 ：" + status);
+            }
+        };
+        QbSdk.initX5Environment(this, preInitCallback);
     }
 
     private void initNetworkListenService() {

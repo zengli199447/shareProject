@@ -147,17 +147,13 @@ public abstract class SimpleActivity extends SupportActivity {
                 LogUtil.e(TAG, " style 异常 ");
             }
         }
-//        if (!(this instanceof HomeActivity)) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-//        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (this instanceof HomeActivity) {
             super.onActivityResult(requestCode, resultCode, data);
             UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-//        }
     }
 
     @Override
