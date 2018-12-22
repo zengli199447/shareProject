@@ -207,7 +207,7 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
                                 ViewGroup.LayoutParams minImg1layoutParams = min_img1.getLayoutParams();
                                 ViewGroup.LayoutParams minImg2layoutParams = min_img2.getLayoutParams();
                                 ViewGroup.LayoutParams minImg3layoutParams = min_img3.getLayoutParams();
-                                int width = DataClass.WINDOWS_WIDTH - 30;
+                                int width = DataClass.WINDOWS_WIDTH - 26;
                                 minImg1layoutParams.width = SystemUtil.dp2px(context, width / 3);
                                 minImg2layoutParams.width = SystemUtil.dp2px(context, width / 3);
                                 minImg3layoutParams.width = SystemUtil.dp2px(context, width / 3);

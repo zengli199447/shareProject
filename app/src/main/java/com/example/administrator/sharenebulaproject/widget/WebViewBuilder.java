@@ -6,12 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.webkit.JsResult;
-import android.webkit.SslErrorHandler;
+
 
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -25,6 +25,8 @@ import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.ToastUtil;
+import com.example.administrator.sharenebulaproject.utils.ToastUtil;
+import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
@@ -44,7 +46,7 @@ public class WebViewBuilder {
     public WebView web_view;
     public ProgressBar progressBar;
     public ToastUtil toastUtil;
-    private String TAG = "WebViewBuilder";
+    private String TAG = getClass().getSimpleName();
     private ProgressDialog progressDialog;
     private Context context;
     private Handler handler;
@@ -62,6 +64,7 @@ public class WebViewBuilder {
         web_view.setWebViewClient(webViewClient);
         web_view.getSettings().setJavaScriptEnabled(true);//设置js可用
         web_view.addJavascriptInterface(new JSInterface(), "share");
+        web_view.setDownloadListener(new MyDownLoadListener(context));
         WebSettings webSettings = web_view.getSettings();
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         webSettings.setSupportZoom(false);
@@ -69,10 +72,6 @@ public class WebViewBuilder {
         webSettings.setDisplayZoomControls(false);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
-//        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-//        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-//        int fontSize = (int) context.getResources().getDimension(R.dimen.dp14);
-//        webSettings.setDefaultFontSize(fontSize);
 
     }
 
@@ -128,24 +127,41 @@ public class WebViewBuilder {
                 return true;//表示我已经处理过了
             }
 
-            LogUtil.e(TAG, "url : " + url);
-            if (!DataClass.WEBSTATUS) {
-                DataClass.WEBSTATUS = true;
-                Intent intent = new Intent(context, PublicWebActivity.class);
-                intent.setFlags(EventCode.EXTERNAL_LINKS);
-                intent.putExtra("url", url);
-                context.startActivity(intent);
-                LogUtil.e(TAG, "oldUrlStatus- : " + DataClass.WEBSTATUS);
-                return true;
+            LogUtil.e(TAG, "Build.VERSION.SDK_INT : " + Build.VERSION.SDK_INT);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+                LogUtil.e(TAG, "EXTERNAL_LINKS");
+                if (DataClass.VERSION_WEBSTATUS) {
+                    LogUtil.e(TAG, "url : " + url);
+                    return JudgeUrl(view, url);
+                } else {
+                    DataClass.VERSION_WEBSTATUS = true;
+                    view.loadUrl(url);
+                    return true;
+                }
             } else {
-                view.loadUrl(url);
-                LogUtil.e(TAG, "oldUrlStatus : " + DataClass.WEBSTATUS);
-                return true;
+                LogUtil.e(TAG, "url : " + url);
+                return JudgeUrl(view, url);
             }
-
         }
-
     };
+
+    @SuppressLint("WrongConstant")
+    private Boolean JudgeUrl(WebView web_view, String url) {
+        LogUtil.e(TAG, "url : " + url);
+        if (!DataClass.WEBSTATUS) {
+            DataClass.WEBSTATUS = true;
+            Intent intent = new Intent(context, PublicWebActivity.class);
+            intent.setFlags(EventCode.EXTERNAL_LINKS);
+            intent.putExtra("url", url);
+            context.startActivity(intent);
+            LogUtil.e(TAG, "oldUrlStatus- : " + DataClass.WEBSTATUS);
+            return true;
+        } else {
+            web_view.loadUrl(url);
+            LogUtil.e(TAG, "oldUrlStatus : " + DataClass.WEBSTATUS);
+            return true;
+        }
+    }
 
     public void loadWebView(String html, boolean status) {
         if (status) {
@@ -232,5 +248,6 @@ public class WebViewBuilder {
             }
         });
     }
+
 
 }

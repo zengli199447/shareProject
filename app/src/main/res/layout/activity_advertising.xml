@@ -2,28 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background">
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/advertising"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp180">
+        android:layout_marginBottom="@dimen/dp100">
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/action"
-        android:layout_width="@dimen/dp90"
-        android:layout_height="@dimen/dp30"
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp20"
         android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp40"
         android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp40"
         android:background="@drawable/corners_hollow_text_transparent_gray"
-        android:text="(5s) 点击进入"
+        android:gravity="center"
+        android:text="@string/skip_advertising"
         android:textColor="@color/white"
-        android:textSize="@dimen/dp14" />
+        android:textSize="@dimen/dp10" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp100"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/logo"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
+            android:src="@drawable/logo_icon" />
+
+        <TextView
+            android:id="@+id/advertsing_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@+id/logo"
+            android:lineSpacingExtra="@dimen/dp5"
+            android:text="阅得益"
+            android:textColor="@color/black_overlay" />
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

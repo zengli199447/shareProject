@@ -22,6 +22,7 @@ import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
 import com.example.administrator.sharenebulaproject.utils.LocationUtils;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
+import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
 import com.google.gson.Gson;
 
@@ -43,6 +44,8 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
     RelativeLayout advertising;
     @BindView(R.id.action)
     TextView action;
+    @BindView(R.id.advertsing_text)
+    TextView advertsing_text;
     public boolean canJumpImmediately = false;
     private int time;
 
@@ -101,6 +104,9 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
     @Override
     protected void initView() {
         new SplashAd(this, advertising, this, AppKeyConfig.ADVERTISING_BAIDU_ADVERTISING_SPLASH_ID, true);
+        SystemUtil.textMagicTool(this, advertsing_text, getString(R.string.app_name), getString(R.string.read_advertising),
+                R.dimen.dp25, R.dimen.dp12, R.color.black_overlay, R.color.gray_light_text, "\n");
+
     }
 
     @Override
@@ -168,7 +174,7 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
 
     //新闻类型获取
     private void TheNewsTypeNetWork() {
-        handler.sendEmptyMessageDelayed(1, 999);
+//        handler.sendEmptyMessageDelayed(1, 999);
         HashMap map = new HashMap<>();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("action", DataClass.CATE_GET);

@@ -47,6 +47,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 作者：真理 Created by Administrator on 2018/12/3.
@@ -65,9 +66,11 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
     private NativeExpressADView nativeExpressADView;
     private AdView adView;
     private TTAdNative mTTAdNative;
+    private final Random random;
 
     public AdvertisingBuilder(Context context) {
         this.context = context;
+        random = new Random();
 //        MultiProcessFlag.setMultiProcess(true);
     }
 
@@ -82,6 +85,8 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
     }
 
     public void initNativeExpressAD(int pageNumber) {
+        int i = random.nextInt(3) + 0;
+        LogUtil.e(TAG, "i" + i);
         ADSize adSize = new ADSize(ADSize.FULL_WIDTH, ADSize.AUTO_HEIGHT); // 消息流中用AUTO_HEIGHT
         nativeExpressAD = new NativeExpressAD(context, adSize, AppKeyConfig.ADVERTISING_QQID, AppKeyConfig.ADVERTISING_QQ_ADVERTISING_ID, this);
         nativeExpressAD.loadAD(12 * pageNumber);

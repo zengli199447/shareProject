@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
@@ -109,7 +110,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initClass() {
-        LogUtil.e(TAG,"id : " + DataClass.USERID);
+        LogUtil.e(TAG, "id : " + DataClass.USERID);
         View decorView = getWindow().getDecorView();
         decorView.getViewTreeObserver().addOnGlobalLayoutListener(ViewBuilder.getGlobalLayoutListener(decorView, findViewById(Window.ID_ANDROID_CONTENT)));
         instance = ShowDialog.getInstance();
@@ -135,17 +136,17 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
         LogUtil.e(TAG, "ifcanmoney : " + ifcanmoney);
 
         if (ifcanmoney != null && "1".equals(ifcanmoney)) {
-            title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money));
+//            title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money));
             if ("0".equals(total)) {
-                title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money_off));
+//                title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money_off));
             } else {
-                title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money));
+//                title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money));
             }
         } else if (ifcanmoney != null && "0".equals(ifcanmoney)) {
             customPopupWindow.refreshViewStatus(false);
-            title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_icon));
+//            title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_icon));
         }
-
+        title_about_img_.setBackground(getResources().getDrawable(R.drawable.more_icon));
         if (total == null && ifcanmoney == null) {
             title_about_img_.setVisibility(View.GONE);
         }
@@ -157,11 +158,13 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
             case EventCode.GENERAL_WEB:
                 web_layout.setVisibility(View.VISIBLE);
                 title_name.setText(getString(R.string.daily_news));
+                DataClass.VERSION_WEBSTATUS = true;
 //                initNetDataWork();
 //                title_about_img.setBackground(getResources().getDrawable(R.drawable.share_icon));
                 webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").append("&userid=").append(DataClass.USERID).toString(), true);
                 break;
             case EventCode.TEXT_WEB:
+                DataClass.VERSION_WEBSTATUS = true;
                 web_layout.setVisibility(View.VISIBLE);
                 switch (Integer.valueOf(intentValue)) {
                     case 2:
@@ -192,12 +195,14 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
                 initNetTextDataWork(Integer.valueOf(intentValue));
                 break;
             case EventCode.CONTENT_WEB:
+                DataClass.VERSION_WEBSTATUS = true;
                 web_layout.setVisibility(View.VISIBLE);
                 title_name.setText(getString(R.string.daily_news));
 //                title_about_img.setBackground(getResources().getDrawable(R.drawable.share_icon));
                 webViewBuilder.loadWebView(intentValue, false);
                 break;
             case EventCode.ADVERTISING:
+                DataClass.VERSION_WEBSTATUS = true;
                 web_layout.setVisibility(View.VISIBLE);
                 title_name.setText(getString(R.string.advertising));
                 webViewBuilder.loadWebView(new StringBuffer().append(DataClass.DAILY_URL).append(intentValue).append("&ifapp=1").append("&userid=").append(DataClass.USERID).toString(), true);

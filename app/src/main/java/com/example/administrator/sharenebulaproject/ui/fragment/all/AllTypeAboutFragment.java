@@ -211,7 +211,7 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
         public void onLoadMore() {
             if (diversifiedRecyclerViewAdapter != null) {
                 diversifiedRecyclerViewAdapter.setLoadState(diversifiedRecyclerViewAdapter.LOADING);
-                if (AllSortClassList.size() > DataClass.DefaultInformationFlow) {
+                if (AllSortClassList.size() - topNewsSize > DataClass.DefaultInformationFlow) {
                     pageNumberMore = pageNumberMore + 1;
                     initAdData();
                 } else {

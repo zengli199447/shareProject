@@ -25,6 +25,7 @@
             android:id="@+id/min_img1"
             android:layout_width="110dp"
             android:layout_height="100dp"
+            android:layout_marginRight="2dp"
             android:background="@drawable/banner_off"
             android:scaleType="centerCrop" />
 
@@ -32,8 +33,6 @@
             android:id="@+id/min_img2"
             android:layout_width="110dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="@dimen/dp5"
-            android:layout_marginRight="@dimen/dp5"
             android:background="@drawable/banner_off"
             android:scaleType="centerCrop" />
 
@@ -41,6 +40,7 @@
             android:id="@+id/min_img3"
             android:layout_width="110dp"
             android:layout_height="100dp"
+            android:layout_marginLeft="2dp"
             android:background="@drawable/banner_off"
             android:scaleType="centerCrop" />
 

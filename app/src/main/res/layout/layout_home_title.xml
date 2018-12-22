@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp100"
+            android:layout_marginRight="@dimen/dp140"
             android:background="@drawable/corners_hollow_edit_search">
 
             <View
@@ -46,8 +46,8 @@
 
         <ImageView
             android:id="@+id/awards_show"
-            android:layout_width="@dimen/dp80"
-            android:layout_height="@dimen/dp30"
+            android:layout_width="@dimen/dp120"
+            android:layout_height="@dimen/dp50"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp10"

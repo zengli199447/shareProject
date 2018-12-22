@@ -45,7 +45,7 @@
                 android:drawablePadding="3dp"
                 android:drawableTop="@drawable/icon_hotpage_selector"
                 android:gravity="center"
-                android:text="@string/hotpage"
+                android:text="@string/information"
                 android:textColor="@drawable/text_color_selector"
                 android:textSize="@dimen/dp12" />
 

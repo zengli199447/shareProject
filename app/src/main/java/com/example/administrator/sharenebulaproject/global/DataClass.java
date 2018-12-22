@@ -159,11 +159,13 @@ public class DataClass {
 
     private ArrayList<Integer> bannerList = new ArrayList<>();
     //当前城市
-    public static String CNBYLOCATION = "武汉市";
+    public static String CNBYLOCATION = "武汉";
 
     public static int DefaultInformationFlow = 11;
 
     public static boolean WEBSTATUS;
+
+    public static boolean VERSION_WEBSTATUS;
 
     public DataManager dataManager;
 

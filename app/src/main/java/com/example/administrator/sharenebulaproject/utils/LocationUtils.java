@@ -75,7 +75,7 @@ public class LocationUtils {
         if (queryedCity.isEmpty())
             queryedCity = GetAddr(location.getLatitude(), location.getLongitude());
         if ((queryedCity != null) && (0 != queryedCity.length())) {
-            cityName = new StringBuffer().append(queryedCity).append("市").toString();
+            cityName = new StringBuffer().append(queryedCity).append("").toString();
             DataClass.CNBYLOCATION = cityName;
         }
 
