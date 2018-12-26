@@ -128,7 +128,7 @@ public class WebViewBuilder {
             }
 
             LogUtil.e(TAG, "Build.VERSION.SDK_INT : " + Build.VERSION.SDK_INT);
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 LogUtil.e(TAG, "EXTERNAL_LINKS");
                 if (DataClass.VERSION_WEBSTATUS) {
                     LogUtil.e(TAG, "url : " + url);

@@ -39,10 +39,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="android.notch_support"
-            android:value="true" />
-
         <activity
             android:name=".ui.activity.MainActivity"
             android:theme="@style/MainTheme">
@@ -154,8 +150,8 @@
 
         <activity
             android:name=".ui.activity.about.PublicWebActivity"
-            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden"
-            android:theme="@style/MainTheme" />
+            android:theme="@style/MainTheme"
+            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden" />
 
         <activity
             android:name=".ui.activity.about.ImageHeartActivity"
@@ -269,6 +265,14 @@
             android:name="BaiduMobAd_APP_ID"
             android:value="fe5d4639" />
 
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="ratio_float" />
+
         <!-- 如果targetSdkVersion设置值>=24，则强烈建议添加以下provider，否则会影响app变现效率 -->
         <provider
             android:name="com.baidu.mobads.openad.FileProvider"
@@ -300,8 +304,7 @@
         <provider
             android:name="com.tencent.mid.api.MidProvider"
             android:authorities="com.tencent.mtademo.TENCENT.MID.V3"
-            android:exported="true" >
-        </provider>
+            android:exported="true"></provider>
 
         <meta-data
             android:name="TA_APPKEY"

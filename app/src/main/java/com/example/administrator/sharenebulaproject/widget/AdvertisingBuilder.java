@@ -85,11 +85,17 @@ public class AdvertisingBuilder implements NativeExpressAD.NativeExpressADListen
     }
 
     public void initNativeExpressAD(int pageNumber) {
-        int i = random.nextInt(3) + 0;
+        String ADVERTISING_ID = "";
+        int i = random.nextInt(2) + 0;
         LogUtil.e(TAG, "i" + i);
+        if (i == 1) {
+            ADVERTISING_ID = AppKeyConfig.ADVERTISING_QQ_ADVERTISING_ID;
+        } else {
+            ADVERTISING_ID = AppKeyConfig.ADVERTISING_QQ_ADVERTISING_LIST_ID;
+        }
         ADSize adSize = new ADSize(ADSize.FULL_WIDTH, ADSize.AUTO_HEIGHT); // 消息流中用AUTO_HEIGHT
-        nativeExpressAD = new NativeExpressAD(context, adSize, AppKeyConfig.ADVERTISING_QQID, AppKeyConfig.ADVERTISING_QQ_ADVERTISING_ID, this);
-        nativeExpressAD.loadAD(12 * pageNumber);
+        nativeExpressAD = new NativeExpressAD(context, adSize, AppKeyConfig.ADVERTISING_QQID, ADVERTISING_ID, this);
+        nativeExpressAD.loadAD(10 * pageNumber);
     }
 
     @Override

@@ -31,6 +31,7 @@ import java.security.InvalidParameterException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2018/8/13.
@@ -38,6 +39,7 @@ import java.util.List;
 
 public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
+    private final Random random;
     private String TAG = getClass().getSimpleName();
 
     private Context context;
@@ -66,6 +68,7 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
         this.nativeExpressADViewList = nativeExpressADViewList;
         TheArticleList = theArticleList;
         height = SystemUtil.dp2px(context, 40);
+        random = new Random();
     }
 
     @Override
@@ -259,7 +262,7 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
             case 2:
                 try {
                     native_outer_view.removeAllViews();
-                    NativeExpressADView nativeExpressADView = nativeExpressADViewList.get(position);
+                    NativeExpressADView nativeExpressADView = nativeExpressADViewList.get(random.nextInt(nativeExpressADViewList.size()) + 0);
                     native_outer_view.addView(nativeExpressADView);
                     mAdViewPositionMap.put(nativeExpressADView, position);
                     nativeExpressADView.render();
@@ -394,5 +397,6 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void refreshTopSize(int size) {
         this.topSize = size;
     }
+
 
 }

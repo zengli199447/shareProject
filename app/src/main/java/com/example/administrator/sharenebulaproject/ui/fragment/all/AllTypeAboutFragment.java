@@ -105,6 +105,7 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
 
     private List<NativeExpressADView> nativeExpressADViewList = new ArrayList<>();
     private int topNewsSize;
+    private int AdvertisingCount = 1;
 
     @Override
     protected void initInject() {
@@ -273,6 +274,8 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
 
     //获取首页数据
     private void initNetDataWork() {
+        AdvertisingCount = AdvertisingCount + 1;
+        LogUtil.e(TAG,"AdvertisingCount : " + AdvertisingCount);
         String token = "";
         if (pushStatus) {
             pageNumber = 1;

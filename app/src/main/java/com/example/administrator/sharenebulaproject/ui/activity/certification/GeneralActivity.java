@@ -9,7 +9,6 @@ import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -41,6 +40,7 @@ import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
 import com.example.administrator.sharenebulaproject.widget.UmShareListenerBuilder;
 import com.google.gson.Gson;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

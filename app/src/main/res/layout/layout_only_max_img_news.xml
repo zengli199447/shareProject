@@ -12,7 +12,7 @@
         android:lineSpacingExtra="5dp"
         android:text="标题"
         android:textColor="@color/black_"
-        android:textSize="@dimen/dp16" />
+        android:textSize="@dimen/dp18" />
 
 
     <ImageView

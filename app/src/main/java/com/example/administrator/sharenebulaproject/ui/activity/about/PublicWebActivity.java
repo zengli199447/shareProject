@@ -309,6 +309,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         DataClass.WEBSTATUS = false;
+//        DataClass.VERSION_WEBSTATUS = false;
     }
 
     //获取文章详情

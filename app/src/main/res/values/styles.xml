@@ -12,6 +12,7 @@
         //沉浸状态栏
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
         //ActionBarDrawerToggle设置颜色
         <item name="colorControlNormal">@android:color/white</item>
@@ -25,10 +26,16 @@
         <!-- 欢迎页背景引用刚才写好的 -->
         <item name="android:windowBackground">@drawable/splash</item>
         <item name="android:windowFullscreen">true</item>
-        <!-- <item name="android:windowIsTranslucent">true</item> --> <!-- 透明背景不要了 -->
+         <item name="android:windowIsTranslucent">true</item>   透明背景不要了
     </style>
 
     <style name="AppBaseTheme" parent="@android:style/Theme.Light" />
+
+    <style name="Theme" parent="Theme.AppCompat.NoActionBar" >
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/gray_light</item>
+        <item name="colorAccent">@color/blue</item>
+    </style>
 
     <style name="DialogTransparent" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>

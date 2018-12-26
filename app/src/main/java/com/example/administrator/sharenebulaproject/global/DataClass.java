@@ -161,7 +161,7 @@ public class DataClass {
     //当前城市
     public static String CNBYLOCATION = "武汉";
 
-    public static int DefaultInformationFlow = 11;
+    public static int DefaultInformationFlow = 9;
 
     public static boolean WEBSTATUS;
 

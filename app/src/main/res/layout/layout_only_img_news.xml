@@ -24,7 +24,7 @@
         android:lineSpacingExtra="@dimen/dp5"
         android:text="标题"
         android:textColor="@color/black_"
-        android:textSize="@dimen/dp16" />
+        android:textSize="@dimen/dp18" />
 
 
 </RelativeLayout>
