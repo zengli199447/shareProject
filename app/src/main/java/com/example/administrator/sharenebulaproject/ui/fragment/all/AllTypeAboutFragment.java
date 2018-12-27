@@ -257,13 +257,16 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
     //先拉取广告，保证同步加载
     private void initAdData() {
         advertisingBuilder.initNativeExpressAD(pageNumber);
+        LogUtil.e(TAG, "先拉取广告");
+        initNetDataWork();
     }
 
     //广告加载完成再加载数据
     @Override
     public void onInitDataListener(List<NativeExpressADView> list) {
         nativeExpressADViewList.addAll(list);
-        initNetDataWork();
+        LogUtil.e(TAG, "广告加载完成再加载数据");
+
     }
 
     //删除广告预置位
@@ -275,7 +278,7 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
     //获取首页数据
     private void initNetDataWork() {
         AdvertisingCount = AdvertisingCount + 1;
-        LogUtil.e(TAG,"AdvertisingCount : " + AdvertisingCount);
+        LogUtil.e(TAG, "AdvertisingCount : " + AdvertisingCount);
         String token = "";
         if (pushStatus) {
             pageNumber = 1;

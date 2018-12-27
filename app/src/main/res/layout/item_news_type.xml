@@ -4,6 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <View
+        android:id="@+id/top_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@color/gray_light" />
+
     <LinearLayout
         android:id="@+id/news_layout"
         android:layout_width="match_parent"
@@ -35,13 +43,13 @@
 
     </LinearLayout>
 
-    <include layout="@layout/layout_self_built_advertising"/>
+    <include layout="@layout/layout_self_built_advertising" />
 
     <View
-        android:visibility="gone"
         android:id="@+id/line_placeholder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp10"
-        android:background="@color/gray_" />
+        android:background="@color/gray_"
+        android:visibility="gone" />
 
 </LinearLayout>

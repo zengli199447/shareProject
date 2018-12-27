@@ -1,5 +1,6 @@
 package com.example.administrator.sharenebulaproject.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,6 +57,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -67,6 +70,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     RadioGroup group_view;
     @BindView(R.id.layout_home)
     RelativeLayout layout_home;
+    @BindView(R.id.guide_layout)
+    RelativeLayout guide_layout;
     private int showFragment = Constants.TYPE_HOTPAGE;
     private int hideFragment = Constants.TYPE_HOTPAGE;
     //    private HomePageFragment homePageFragment;
@@ -81,6 +86,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private boolean switchStatus;
     private DownloadService.DownloadBinder mDownloadBinder;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void dispatchMessage(Message msg) {
@@ -209,6 +215,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     if (dataManager.loadAppDBInfoDao().size() > 0) {
                         handler.sendEmptyMessageDelayed(0, 1500);
                     } else {
+                        guide_layout.setVisibility(View.VISIBLE);
                         handler.sendEmptyMessage(0);
                         dataManager.insertAppDBInfoDao(new AppDBInfo("", true));
                     }
@@ -224,9 +231,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         group_view.setOnCheckedChangeListener(this);
     }
 
+    @OnClick({R.id.guide_layout})
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()) {
+            case R.id.guide_layout:
+                guide_layout.setVisibility(View.GONE);
+                break;
+        }
     }
 
 

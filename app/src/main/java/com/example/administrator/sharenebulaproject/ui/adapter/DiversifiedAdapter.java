@@ -125,6 +125,15 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         int itemViewType = getItemViewType(position);
 
+        View top_line = holder.itemView.findViewById(R.id.top_line);
+        if (position > 1 && getItemViewType(position - 1) == 2) {
+            if (top_line != null)
+            top_line.setVisibility(View.VISIBLE);
+        } else {
+            if (top_line != null)
+                top_line.setVisibility(View.GONE);
+        }
+
         View layout_after_refresh = holder.itemView.findViewById(R.id.layout_after_refresh);
         TextView after_refresh = holder.itemView.findViewById(R.id.after_refresh);
 

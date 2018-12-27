@@ -41,5 +41,6 @@
 
     <color name="translucent">#39080808</color>
 
+    <color name="translucent_max">#7e080808</color>
 
 </resources>
