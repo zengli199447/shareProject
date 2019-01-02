@@ -236,7 +236,7 @@ public class UpGradeVipActivity extends BaseActivity implements View.OnClickList
         if (levelBean.getIfcanclick().equals("1")) {
             levelconfigid = levelBean.getLevelconfigid();
             customPayInputPopupWindow.setTitlePayNumber(levelBean.getLevelprice());
-            customPayInputPopupWindow.showAtLocation(findViewById(R.id.upgrade_list), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+            customPayInputPopupWindow.showAtLocation(findViewById(R.id.upgrade_list), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             SystemUtil.windowToDark(this);
         } else {
             toastUtil.showToast(getString(R.string.no_check_exception));

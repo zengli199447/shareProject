@@ -158,12 +158,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     protected void initClass() {
-        MyApplication.executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                LocationUtils.getCNBylocation(HomeActivity.this);
-            }
-        });
         progressDialog = ShowDialog.getInstance().showProgressStatus(this, getString(R.string.progress));
         umShareListenerBuilder = new UmShareListenerBuilder(this, toastUtil);
     }

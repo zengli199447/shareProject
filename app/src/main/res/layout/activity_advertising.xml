@@ -4,15 +4,22 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/splash_container"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/dp100"
+        android:layout_height="match_parent" />
+
+    <ImageView
         android:id="@+id/advertising"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp100">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp100"
+        android:scaleType="fitXY"/>
 
-    </RelativeLayout>
 
     <TextView
+        android:visibility="visible"
         android:id="@+id/action"
         android:layout_width="@dimen/dp60"
         android:layout_height="@dimen/dp20"
@@ -33,10 +40,10 @@
         android:layout_centerHorizontal="true">
 
         <ImageView
-            android:layout_centerVertical="true"
             android:id="@+id/logo"
             android:layout_width="@dimen/dp60"
             android:layout_height="@dimen/dp60"
+            android:layout_centerVertical="true"
             android:src="@drawable/logo_icon" />
 
         <TextView

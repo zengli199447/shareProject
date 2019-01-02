@@ -111,8 +111,6 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void initClass() {
         LogUtil.e(TAG, "id : " + DataClass.USERID);
-        View decorView = getWindow().getDecorView();
-        decorView.getViewTreeObserver().addOnGlobalLayoutListener(ViewBuilder.getGlobalLayoutListener(decorView, findViewById(Window.ID_ANDROID_CONTENT)));
         instance = ShowDialog.getInstance();
         progressDialog = instance.showProgressStatus(this, getString(R.string.progress));
         webViewBuilder = new WebViewBuilder(web_view, progressDialog, toastUtil, this, handler);
@@ -245,7 +243,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
     }
 
     public void ShowShareSelect() {
-        customPopupWindow.showAtLocation(web_layout, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        customPopupWindow.showAtLocation(web_layout, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
         SystemUtil.windowToDark(this);
     }
 

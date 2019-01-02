@@ -307,7 +307,7 @@ public class AnecdotesActivity extends BaseActivity implements CustomPopupWindow
 
     //显示选择分享分类
     public void ShowShareSelect() {
-        customPopupWindow.showAtLocation(title_name, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        customPopupWindow.showAtLocation(title_name, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
         SystemUtil.windowToDark(this);
     }
 

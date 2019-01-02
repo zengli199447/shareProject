@@ -66,6 +66,19 @@ public class HotAllDataBean {
         private String newversion;
         private String ifmust;
         private List<topNews> topnews;
+        private String downsite;
+
+        public Result(String downsite) {
+            this.downsite = downsite;
+        }
+
+        public String getDownsite() {
+            return downsite;
+        }
+
+        public void setDownsite(String downsite) {
+            this.downsite = downsite;
+        }
 
         public List<topNews> getTopnews() {
             return topnews;

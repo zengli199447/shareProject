@@ -11,6 +11,7 @@ import com.example.administrator.sharenebulaproject.base.BaseActivity;
 import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.model.bean.UserInfoBean;
 import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
+import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 
 import butterknife.BindView;
 
@@ -54,7 +55,7 @@ public class ImageHeartActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
-        Glide.with(this).load(new StringBuffer().append(DataClass.FileUrl).append(UserInfoBean.photo).toString()).centerCrop().error(R.drawable.banner_off).into(user_heart);
+        Glide.with(this).load(SystemUtil.JudgeUrl(UserInfoBean.photo)).centerCrop().error(R.drawable.banner_off).into(user_heart);
         title_name.setText(getString(R.string.user_herat));
     }
 

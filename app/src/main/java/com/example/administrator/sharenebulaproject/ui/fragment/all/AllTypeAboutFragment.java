@@ -388,7 +388,9 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
                             }
                             // 应用更新状态
                             if (!result.getNewversion().isEmpty()) {
-                                DataClass.APK_URL = result.getRootPath();
+                                DataClass.APK_URL = result.getDownsite();
+                                LogUtil.e(TAG," DataClass.APK_URL : " +  DataClass.APK_URL);
+
                                 if ("0".equals(result.getIfmust())) {
                                     instance.showPromptDialog(getActivity(), result.getNewversion(), false);
                                 } else {

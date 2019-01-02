@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.administrator.sharenebulaproject">
 
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -151,7 +152,7 @@
         <activity
             android:name=".ui.activity.about.PublicWebActivity"
             android:theme="@style/MainTheme"
-            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden" />
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.activity.about.ImageHeartActivity"
@@ -180,16 +181,17 @@
         <service android:name=".server.ListenNetworkStateService" />
         <service android:name=".server.DownloadService" />
 
-        <!--<provider-->
-        <!--android:name="android.support.v4.content.FileProvider"-->
-        <!--android:authorities="com.example.administrator.sharenebulaproject"-->
-        <!--android:exported="false"-->
-        <!--android:grantUriPermissions="true">-->
-        <!--&lt;!&ndash;元数据&ndash;&gt;-->
-        <!--<meta-data-->
-        <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-        <!--android:resource="@xml/file_paths" />-->
-        <!--</provider>-->
+        <provider
+            android:name=".provider.MyFileProvider"
+            android:authorities="${applicationId}.sharenebulaproject.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:multiprocess="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <activity
             android:name=".wxapi.WXEntryActivity"

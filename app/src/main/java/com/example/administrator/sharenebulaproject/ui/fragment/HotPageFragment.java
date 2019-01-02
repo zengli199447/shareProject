@@ -373,7 +373,7 @@ public class HotPageFragment extends BaseFragment implements View.OnClickListene
         shareImgUrl = new StringBuffer().append(DataClass.FileUrl).append(newsBean.getListimg().split(",")[0]).toString();
         shareNewsUrl = new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).append(DataClass.USERID_SHARE).toString();
         if (Integer.valueOf(newsBean.getStarbean()) > 0) {
-            customPopupWindow.showAtLocation(hot_list, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+            customPopupWindow.showAtLocation(hot_list, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             SystemUtil.windowToDark(getActivity());
         }
     }

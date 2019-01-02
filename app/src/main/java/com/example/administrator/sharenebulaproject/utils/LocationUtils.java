@@ -31,6 +31,8 @@ import java.util.List;
 
 public class LocationUtils {
 
+    String TAG = getClass().getSimpleName();
+
     public static String cityName;  //城市名
 
     private static Geocoder geocoder;   //此对象能通过经纬度来获取相应的城市等信息
@@ -74,10 +76,8 @@ public class LocationUtils {
         queryedCity = updateWithNewLocation(location);
         if (queryedCity.isEmpty())
             queryedCity = GetAddr(location.getLatitude(), location.getLongitude());
-        if ((queryedCity != null) && (0 != queryedCity.length())) {
-            cityName = new StringBuffer().append(queryedCity).append("").toString();
-            DataClass.CNBYLOCATION = cityName;
-        }
+        if (!queryedCity.isEmpty())
+            DataClass.CNBYLOCATION = queryedCity;
 
         /*
          * 第二个参数表示更新的周期，单位为毫秒；第三个参数的含义表示最小距离间隔，单位是米

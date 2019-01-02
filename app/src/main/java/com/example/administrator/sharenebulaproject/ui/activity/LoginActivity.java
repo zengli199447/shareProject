@@ -235,7 +235,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     image_url_external = data.get("profile_image_url");
                     break;
             }
-            new MultipartBuilder().downloadImg(this, image_url_external);
+            LogUtil.e(TAG, "openid_external :" + openid_external);
+            LogUtil.e(TAG, "name_external :" + name_external);
+            LogUtil.e(TAG, "gender_external :" + gender_external);
+            LogUtil.e(TAG, "image_url_external :" + image_url_external);
+//            new MultipartBuilder().downloadImg(this, image_url_external);
+            initNetDataWork(DataClass.LOGINTYPE);
         } else {
             LogUtil.e(TAG, "用户信息为空");
             progressDialog.dismiss();

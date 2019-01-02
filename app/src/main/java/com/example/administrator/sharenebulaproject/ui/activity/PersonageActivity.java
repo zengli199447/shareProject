@@ -191,7 +191,7 @@ public class PersonageActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.user_heart:
                 if (upDataStatus) {
-                    customMediaFilePopupWindow.showAtLocation(input_expected_income, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+                    customMediaFilePopupWindow.showAtLocation(input_expected_income, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                     SystemUtil.windowToDark(this);
                 }
                 break;

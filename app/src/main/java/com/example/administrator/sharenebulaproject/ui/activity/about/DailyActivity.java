@@ -168,7 +168,7 @@ public class DailyActivity extends BaseActivity implements View.OnClickListener,
                 shareTitle = getString(R.string.select);
                 shareImgUrl = "";
                 shareNewsUrl = DataClass.SELECT;
-                customPopupWindow.showAtLocation(hot_list, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+                customPopupWindow.showAtLocation(hot_list, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 SystemUtil.windowToDark(this);
                 break;
         }

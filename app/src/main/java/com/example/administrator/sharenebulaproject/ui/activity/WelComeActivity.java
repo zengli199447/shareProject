@@ -69,6 +69,12 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initClass() {
+        MyApplication.executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                LocationUtils.getCNBylocation(WelComeActivity.this);
+            }
+        });
         dataClass = new DataClass(dataManager);
         if (dataManager.queryLoginUserInfo("admin") != null) {
             LoginUserInfo admin = dataManager.queryLoginUserInfo("admin");

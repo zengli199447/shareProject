@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,6 +29,9 @@ import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
 import com.google.gson.Gson;
+import com.qq.e.ads.splash.SplashAD;
+import com.qq.e.ads.splash.SplashADListener;
+import com.qq.e.comm.util.AdError;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -38,16 +45,20 @@ import butterknife.OnClick;
  * 邮箱：229017464@qq.com
  * remark: 引导页、广告
  */
-public class AdvertisingActivity extends BaseActivity implements SplashAdListener, View.OnClickListener {
+public class AdvertisingActivity extends BaseActivity implements View.OnClickListener ,SplashADListener {
 
     @BindView(R.id.advertising)
-    RelativeLayout advertising;
+    ImageView advertising;
     @BindView(R.id.action)
     TextView action;
     @BindView(R.id.advertsing_text)
     TextView advertsing_text;
+    @BindView(R.id.splash_container)
+    ViewGroup splash_container;
     public boolean canJumpImmediately = false;
     private int time;
+
+    private int minSplashTimeWhenNoAD = 5000;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -66,6 +77,8 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
 
         }
     };
+    private long fetchSplashADTime;
+    private SplashAD splashAD;
 
     private void seconds() {
         if (time > 0 && action != null) {
@@ -92,7 +105,12 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
 
     @Override
     protected void initClass() {
-
+        MyApplication.executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                LocationUtils.getCNBylocation(AdvertisingActivity.this);
+            }
+        });
     }
 
     @Override
@@ -103,10 +121,10 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
 
     @Override
     protected void initView() {
-        new SplashAd(this, advertising, this, AppKeyConfig.ADVERTISING_BAIDU_ADVERTISING_SPLASH_ID, true);
         SystemUtil.textMagicTool(this, advertsing_text, getString(R.string.app_name), getString(R.string.read_advertising),
                 R.dimen.dp25, R.dimen.dp12, R.color.black_overlay, R.color.gray_light_text, "\n");
-
+        fetchSplashADTime = System.currentTimeMillis();
+        splashAD = new SplashAD(this, splash_container, advertsing_text, AppKeyConfig.ADVERTISING_QQID, AppKeyConfig.ADVERTISING_QQ_SPLASH_ADVERTISING_ID, this, 0);
     }
 
     @Override
@@ -122,29 +140,6 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
                 handler.sendEmptyMessage(0);
                 break;
         }
-    }
-
-    @Override
-    public void onAdPresent() {
-        LogUtil.e(TAG, "onAdPresent");
-    }
-
-    @Override
-    public void onAdDismissed() {
-        LogUtil.e(TAG, "onAdDismissed");
-        jumpWhenCanClick(); // 跳转至您的应用主界面
-    }
-
-    @Override
-    public void onAdFailed(String s) {
-        LogUtil.e(TAG, "onAdFailed");
-        this.startActivity(new Intent(this, HomeActivity.class));
-        this.finish();
-    }
-
-    @Override
-    public void onAdClick() {
-        LogUtil.e(TAG, "onAdClick");
     }
 
     private void jumpWhenCanClick() {
@@ -170,6 +165,62 @@ public class AdvertisingActivity extends BaseActivity implements SplashAdListene
     protected void onPause() {
         super.onPause();
         canJumpImmediately = false;
+    }
+
+    @Override
+    public void onADDismissed() {
+
+    }
+
+    @Override
+    public void onNoAD(AdError adError) {
+
+    }
+
+    @Override
+    public void onADPresent() {
+        advertising.setVisibility(View.INVISIBLE); // 广告展示后一定要把预设的开屏图片隐藏起来
+    }
+
+    @Override
+    public void onADClicked() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    @Override
+    public void onADTick(long millisUntilFinished) {
+        action.setText(String.format(getString(R.string.action), Math.round(millisUntilFinished / 1000f)));
+    }
+
+    @Override
+    public void onADExposure() {
+        long alreadyDelayMills = System.currentTimeMillis() - fetchSplashADTime;//从拉广告开始到onNoAD已经消耗了多少时间
+        long shouldDelayMills = alreadyDelayMills > minSplashTimeWhenNoAD ? 0 : minSplashTimeWhenNoAD
+                - alreadyDelayMills;//为防止加载广告失败后立刻跳离开屏可能造成的视觉上类似于"闪退"的情况，根据设置的minSplashTimeWhenNoAD
+        // 计算出还需要延时多久
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(AdvertisingActivity.this, HomeActivity.class));
+                finish();
+            }
+        }, shouldDelayMills);
+    }
+
+    /** 开屏页一定要禁止用户对返回按钮的控制，否则将可能导致用户手动退出了App而广告无法正常曝光和计费 */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     //新闻类型获取

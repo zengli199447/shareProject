@@ -23,13 +23,14 @@ public class DataClass {
 //    public static String URL = "http://192.168.14.199:8088/portal/r/";
 //    public static String URL = "http://xfx.027perfect.com/api/";
 //    public static String URL_ = "http://xfx.027perfect.com/";
-    public static String URL = "http://ydy.lixb.cc/api/";
-    public static String URL_ = "http://ydy.lixb.cc/";
+//    public static String URL = "http://ydy.lixb.cc/api/";
+    public static String URL = "http://yuedeyi.douy18.com/api/";
+    public static String URL_ = "http://yuedeyi.douy18.com/";
     public static String APK_URL = "http://192.168.2.197:8080/data/yuedeyi.apk";
 
     //媒体文件前缀
 //    public static String FileUrl = "http://xfx.027perfect.com/";
-    public static String FileUrl = "http://ydy.lixb.cc/";
+    public static String FileUrl = "http://yuedeyi.douy18.com/";
 
     public static final String BASE_URL = URL + "api.mingfa.php?version=v1&vars=" + "{" + "\"" + "action" + "\"" + ":" + "\"" + "image_save_set" + "\"" + "}";
 
@@ -159,7 +160,7 @@ public class DataClass {
 
     private ArrayList<Integer> bannerList = new ArrayList<>();
     //当前城市
-    public static String CNBYLOCATION = "武汉";
+    public static String CNBYLOCATION = "本地";
 
     public static int DefaultInformationFlow = 9;
 

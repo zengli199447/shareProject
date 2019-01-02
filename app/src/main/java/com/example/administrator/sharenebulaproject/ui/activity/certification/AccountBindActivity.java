@@ -1,5 +1,6 @@
 package com.example.administrator.sharenebulaproject.ui.activity.certification;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Gravity;
@@ -138,6 +139,7 @@ public class AccountBindActivity extends BaseActivity implements View.OnClickLis
         img_btn_black.setOnClickListener(this);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -185,7 +187,7 @@ public class AccountBindActivity extends BaseActivity implements View.OnClickLis
             } else if (flags == EventCode.ACCOUNT_BIND) {
                 selectIndex = type;
                 customPayPopupWindow.setUnBindStatus(true);
-                customPayPopupWindow.showAtLocation(findViewById(R.id.layout_bg_last), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+                customPayPopupWindow.showAtLocation(findViewById(R.id.layout_bg_last), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         }
     }

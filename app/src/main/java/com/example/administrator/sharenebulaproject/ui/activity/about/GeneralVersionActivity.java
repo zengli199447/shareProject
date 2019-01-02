@@ -1,5 +1,6 @@
 package com.example.administrator.sharenebulaproject.ui.activity.about;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -91,6 +92,7 @@ public class GeneralVersionActivity extends BaseActivity implements View.OnClick
     private UmShareListenerBuilder umShareListenerBuilder;
     private ProgressDialog progressDialog;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void dispatchMessage(Message msg) {
@@ -103,7 +105,7 @@ public class GeneralVersionActivity extends BaseActivity implements View.OnClick
                         toastUtil.showToast(getString(R.string.bitmap_exception));
                         return;
                     }
-                    customPopupWindow.showAtLocation(layout_posters, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+                    customPopupWindow.showAtLocation(layout_posters, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                     SystemUtil.windowToDark(GeneralVersionActivity.this);
                     break;
             }

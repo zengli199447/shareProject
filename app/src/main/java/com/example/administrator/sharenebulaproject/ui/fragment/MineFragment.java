@@ -324,7 +324,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                         if (mineInfoNetBean.getStatus() == 1) {
                             new SystemUtil().textMagicToolTypeFace(getActivity(), balance_outstanding, result.getStarbeantotal(), getString(R.string.balance_outstanding), R.dimen.dp16, R.dimen.dp12, R.color.blue, R.color.gray_light_text, "\n");
                             if (!result.getUser().getPhoto().isEmpty())
-                                Glide.with(getActivity()).load(new StringBuffer().append(DataClass.FileUrl).append(result.getUser().getPhoto()).toString()).centerCrop().error(R.drawable.user_photo_icon).into(user_heart);
+                                Glide.with(getActivity()).load(SystemUtil.JudgeUrl(result.getUser().getPhoto())).centerCrop().error(R.drawable.user_photo_icon).into(user_heart);
                             invite_code.setText(new StringBuffer().append("邀请码: ").append(result.getUser().getInvitationcode()));
                             nick_name.setText(result.getUser().getSecondname());
                             vip_level.setText(new StringBuffer().append("会员等级: ").append(result.getUser().getLevelname()));

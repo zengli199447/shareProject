@@ -20,6 +20,8 @@ public class AppKeyConfig {
 
     public static String ADVERTISING_QQ_ADVERTISING_ID = "8060143638220554";
     public static String ADVERTISING_QQ_ADVERTISING_LIST_ID = "2090243716094251";
+    public static String ADVERTISING_QQ_SPLASH_ADVERTISING_ID = "3030842964344510";
+
 
 
     public static String ADVERTISING_BAIDU_ADVERTISING_ID = "5992220";
