@@ -65,7 +65,7 @@ public class NewsContentAdapter extends RecyclerView.Adapter<MyViewHolder> imple
 
         refreshView(holder, titleNewsBean);
 
-        if (deletStatus && !context.getString(R.string.recommended).equals(titleNewsBean.getContent())) {
+        if (deletStatus && !context.getString(R.string.comprehensive).equals(titleNewsBean.getContent())) {
             type_delet.setVisibility(View.VISIBLE);
         } else {
             type_delet.setVisibility(View.GONE);
@@ -114,6 +114,13 @@ public class NewsContentAdapter extends RecyclerView.Adapter<MyViewHolder> imple
         notifyDataSetChanged();
         return deletStatus;
     }
+
+    public void confirmTheEditorModle(TextView textView) {
+//        deletStatus = false;
+        textView.setText(context.getString(R.string.the_editor));
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {

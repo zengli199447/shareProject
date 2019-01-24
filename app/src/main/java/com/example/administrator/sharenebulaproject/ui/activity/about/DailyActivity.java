@@ -33,6 +33,7 @@ import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.CustomPopupWindow;
 import com.example.administrator.sharenebulaproject.ui.view.ImageNetSlideshow;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -192,7 +193,7 @@ public class DailyActivity extends BaseActivity implements View.OnClickListener,
         dailyIntent.putExtra("value", newsBean.getNewsid());
         dailyIntent.putExtra("shareTitle", newsBean.getTitle());
         dailyIntent.putExtra("shareImgUrl", new StringBuffer().append(DataClass.FileUrl).append(newsBean.getListimg().split(",")[0]).toString());
-        dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).append(DataClass.USERID_SHARE).toString());
+        dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).toString());
         dailyIntent.putExtra("total", newsBean.getStarbean());
         dailyIntent.putExtra("ifcanmoney", newsBean.getIfcanmoney());
         startActivity(dailyIntent);
@@ -213,7 +214,7 @@ public class DailyActivity extends BaseActivity implements View.OnClickListener,
         dailyIntent.putExtra("value", bannerBean.getNewsid());
         dailyIntent.putExtra("shareTitle", bannerBean.getTitle());
         dailyIntent.putExtra("shareImgUrl", new StringBuffer().append(DataClass.FileUrl).append(bannerBean.getTopimg()).toString());
-        dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(bannerBean.getNewsid()).append(DataClass.USERID_SHARE).toString());
+        dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(bannerBean.getNewsid()).toString());
         dailyIntent.putExtra("total", bannerBean.getStarbean());
         dailyIntent.putExtra("ifcanmoney", bannerBean.getIfcanmoney());
         startActivity(dailyIntent);
@@ -328,7 +329,7 @@ public class DailyActivity extends BaseActivity implements View.OnClickListener,
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("reftype", reftype);
         linkedHashMap.put("refid", newsid);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

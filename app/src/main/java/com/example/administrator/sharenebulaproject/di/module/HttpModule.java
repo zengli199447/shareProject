@@ -2,6 +2,7 @@ package com.example.administrator.sharenebulaproject.di.module;
 
 import com.bumptech.glide.integration.okhttp.BuildConfig;
 import com.example.administrator.sharenebulaproject.di.qualifier.MyUrl;
+import com.example.administrator.sharenebulaproject.global.MyApplication;
 import com.example.administrator.sharenebulaproject.model.http.api.MyApis;
 import com.example.administrator.sharenebulaproject.model.manager.RetrofitUrlManager;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
@@ -144,7 +145,7 @@ public class HttpModule {
                 .build();
         builder.addInterceptor(commonInterceptor);
 
-//        //设置cookie管理
+        //设置cookie管理
 //        ClearableCookieJar cookieJar =
 //                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(MyApplication.getInstance().getApplicationContext()));
 //

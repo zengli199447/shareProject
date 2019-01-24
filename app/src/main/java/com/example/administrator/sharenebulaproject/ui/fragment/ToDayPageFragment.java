@@ -41,6 +41,7 @@ import com.example.administrator.sharenebulaproject.ui.adapter.TabPageIndicatorA
 import com.example.administrator.sharenebulaproject.ui.adapter.TitleNewsTypeAdapter;
 import com.example.administrator.sharenebulaproject.ui.fragment.all.AllTypeAboutFragment;
 import com.example.administrator.sharenebulaproject.ui.fragment.all.AllTypeFragment;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -159,6 +160,7 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     protected void initData() {
+        LogUtil.e(TAG, "DataClass.TYPE_TITLE.size() : " + DataClass.TYPE_TITLE.size());
         for (int i = 0; i < DataClass.TYPE_TITLE.size(); i++) {
             Object object = DataClass.TYPE_TITLE.get(i);
             packagingData(object, i);
@@ -359,6 +361,7 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
         newsContentAdapter.notifyDataSetChanged();
         newsContentAdapter.emptyChangeTheSorting();
         TheSortingNetWork(newsContentAdapter.JoiningTogetherData(titleNews));
+        newsContentAdapter.confirmTheEditorModle(the_editor);
     }
 
     //新闻类型获取
@@ -417,7 +420,7 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
         linkedHashMap.put("action", DataClass.CATE_SORT_SET);
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("sortlist", content);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

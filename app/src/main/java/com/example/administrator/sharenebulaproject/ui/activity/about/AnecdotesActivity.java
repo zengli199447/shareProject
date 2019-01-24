@@ -37,6 +37,7 @@ import com.example.administrator.sharenebulaproject.ui.adapter.AnecdotesContentA
 import com.example.administrator.sharenebulaproject.ui.adapter.CommentsAdapter;
 import com.example.administrator.sharenebulaproject.ui.adapter.RecommendedAdapter;
 import com.example.administrator.sharenebulaproject.ui.view.CustomPopupWindow;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.AdvertisingBuilder;
@@ -402,7 +403,7 @@ public class AnecdotesActivity extends BaseActivity implements CustomPopupWindow
         linkedHashMap.put("action", DataClass.ZAN_SET);
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("newsid", intentValue);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)
@@ -428,7 +429,7 @@ public class AnecdotesActivity extends BaseActivity implements CustomPopupWindow
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("newsid", intentValue);
         linkedHashMap.put("content", content);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

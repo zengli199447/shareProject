@@ -33,6 +33,7 @@ import com.example.administrator.sharenebulaproject.ui.activity.LoginActivity;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.CustomPopupWindow;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -89,11 +90,14 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
     protected void registerEvent(CommonEvent commonevent) {
         switch (commonevent.getCode()) {
             case EventCode.USERID_REFRESH:
-                shareNewsUrl = shareNewsUrl + commonevent.getTemp_str();
+//                shareNewsUrl = shareNewsUrl + commonevent.getTemp_str();
                 webViewBuilder.shareLoginUser(commonevent.getTemp_str());
                 break;
             case EventCode.LOGIN:
                 startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case EventCode.ERROR_USERID:
+                finish();
                 break;
         }
     }
@@ -118,6 +122,8 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
         umShareListenerBuilder = new UmShareListenerBuilder(this, toastUtil);
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
         webViewBuilder.initWebView();
+
+
     }
 
     @Override
@@ -132,6 +138,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
 
         LogUtil.e(TAG, "total : " + total);
         LogUtil.e(TAG, "ifcanmoney : " + ifcanmoney);
+        LogUtil.e(TAG, "shareNewsUrl : " + shareNewsUrl);
 
         if (ifcanmoney != null && "1".equals(ifcanmoney)) {
 //            title_about_img_.setBackground(getResources().getDrawable(R.drawable.share_money));
@@ -270,19 +277,23 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void setOnItemClick(View v) {
-        LogUtil.e(TAG, "shareNewsUrl : " + shareNewsUrl);
-        switch (v.getId()) {
-            case R.id.share_wechat:
-                umShareListenerBuilder.initUmUrlShare(1, bitmap, shareImgUrl, new StringBuffer().append(shareNewsUrl).append("&type=1").append("&ifapp=0").toString(), shareTitle, shareTitle);
-                break;
-            case R.id.wechat_friends:
-                umShareListenerBuilder.initUmUrlShare(2, bitmap, shareImgUrl, new StringBuffer().append(shareNewsUrl).append("&type=1").append("&ifapp=0").toString(), shareTitle, shareTitle);
-                break;
-            case R.id.qq:
-                umShareListenerBuilder.initUmUrlShare(0, bitmap, shareImgUrl, new StringBuffer().append(shareNewsUrl).append("&type=2").append("&ifapp=0").toString(), shareTitle, shareTitle);
-                break;
+        if (DataClass.USERID.isEmpty()) {
+            instance.showGeneralConfirmDialog(this, EventCode.ERROR_USERID, getString(R.string.error_userid));
+        } else {
+            LogUtil.e(TAG, "shareNewsUrl : " + new StringBuffer().append(shareNewsUrl).append("&type=2").append("&ifapp=0").toString());
+            switch (v.getId()) {
+                case R.id.share_wechat:
+                    umShareListenerBuilder.initUmUrlShare(1, bitmap, shareImgUrl, new StringBuffer().append(shareNewsUrl).append("&userid_share=").append(DataClass.USERID).append("&type=1").append("&ifapp=0").toString(), shareTitle, shareTitle);
+                    break;
+                case R.id.wechat_friends:
+                    umShareListenerBuilder.initUmUrlShare(2, bitmap, shareImgUrl, new StringBuffer().append(shareNewsUrl).append("&userid_share=").append(DataClass.USERID).append("&type=1").append("&ifapp=0").toString(), shareTitle, shareTitle);
+                    break;
+                case R.id.qq:
+                    umShareListenerBuilder.initUmUrlShare(0, bitmap, shareImgUrl, new StringBuffer().append(shareNewsUrl).append("&userid_share=").append(DataClass.USERID).append("&type=2").append("&ifapp=0").toString(), shareTitle, shareTitle);
+                    break;
+            }
+            customPopupWindow.dismiss();
         }
-        customPopupWindow.dismiss();
     }
 
     @Override
@@ -396,7 +407,7 @@ public class PublicWebActivity extends BaseActivity implements View.OnClickListe
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("reftype", 1);
         linkedHashMap.put("refid", intentValue);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson = AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

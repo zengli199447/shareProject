@@ -18,6 +18,7 @@ import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.rxtools.RxBus;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -196,7 +197,7 @@ public class SecurityCertificationActivity extends BaseActivity implements View.
         linkedHashMap.put("action", DataClass.WEIXIN_SET);
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("weixin", unionid);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

@@ -285,8 +285,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             toastUtil.showToast(getString(R.string.finish));
             exitTime = System.currentTimeMillis();
         } else {
+            RxBus.getDefault().post(new CommonEvent(EventCode.FINISH_TASK));
             finish();
-            System.exit(0);
         }
     }
 

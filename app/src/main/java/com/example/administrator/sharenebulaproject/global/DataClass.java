@@ -168,6 +168,8 @@ public class DataClass {
 
     public static boolean VERSION_WEBSTATUS;
 
+    public static boolean VERSION_UP = true;
+
     public DataManager dataManager;
 
     public DataClass() {

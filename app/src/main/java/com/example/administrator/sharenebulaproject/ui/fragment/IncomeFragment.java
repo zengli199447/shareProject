@@ -209,7 +209,7 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
                             if (result.getIs_inmoney() > 0) {
                                 come_show_logo_prompt.setVisibility(View.VISIBLE);
                                 mediaPlayBuilder.playFromRawFile(getActivity());
-                                handler.sendEmptyMessageDelayed(0, 2000);
+                                handler.sendEmptyMessageDelayed(0, 3000);
                             }
                             initAdapter();
                             SystemUtil.textMagicTool(getActivity(), all_icome, result.getMoneyin_all(), getString(R.string.money_all), R.dimen.dp20, R.dimen.dp12, R.color.motion_red, R.color.black_overlay, "\n");

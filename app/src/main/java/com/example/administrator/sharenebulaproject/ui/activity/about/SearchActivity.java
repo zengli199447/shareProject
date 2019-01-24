@@ -124,7 +124,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         dailyIntent.putExtra("value", String.valueOf(newsBean.getNewsid()));
         dailyIntent.putExtra("shareTitle", newsBean.getTitle());
         dailyIntent.putExtra("shareImgUrl", new StringBuffer().append(DataClass.FileUrl).append(newsBean.getListimg().split(",")[0]).toString());
-        dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).append(DataClass.USERID_SHARE).toString());
+        dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).toString());
         dailyIntent.putExtra("total", String.valueOf(newsBean.getStarbean()));
         dailyIntent.putExtra("ifcanmoney", String.valueOf(newsBean.getIfcanmoney()));
         startActivity(dailyIntent);

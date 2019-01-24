@@ -69,6 +69,7 @@
             android:layout_marginRight="@dimen/dp100"
             android:layout_toRightOf="@+id/validation_text"
             android:background="@color/transparent"
+            android:inputType="phone"
             android:hint="@string/hint_validation"
             android:textColorHint="@color/gray_light"
             android:textCursorDrawable="@drawable/corners_edittext_cursor"
@@ -116,7 +117,7 @@
             android:layout_marginLeft="@dimen/dp50"
             android:layout_toRightOf="@+id/invitation_text"
             android:background="@color/transparent"
-            android:hint="@string/hint_invitation"
+            android:hint="@string/invitation_about"
             android:textColorHint="@color/gray_light"
             android:textCursorDrawable="@drawable/corners_edittext_cursor"
             android:textSize="16dp" />

@@ -104,5 +104,7 @@ public class EventCode {
 
     public static final int LOGIN = 1043;
 
+    public static final int ERROR_USERID = 1044;
+
 
 }

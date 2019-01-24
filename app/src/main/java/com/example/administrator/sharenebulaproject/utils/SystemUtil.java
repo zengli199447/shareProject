@@ -20,6 +20,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -52,12 +53,18 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 
 
 /**
@@ -678,12 +685,12 @@ public class SystemUtil {
         }
     }
 
-    public static int packageCode(Context context) {
+    public static String packageCode(Context context) {
         PackageManager manager = context.getPackageManager();
-        int code = 0;
+        String code = "";
         try {
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
-            code = info.versionCode;
+            code = info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -713,5 +720,32 @@ public class SystemUtil {
         }
         return url;
     }
+
+    private static String SEED_MFT = "M0z0KAbum07siTcBczSe54";    //美发通-加密种子
+
+    public static String Encrypt(String clearStr) {
+        try {
+            // DES算法要求有一个可信任的随机数源
+            SecureRandom sr = new SecureRandom();
+            // 从原始密钥数据创建DESKeySpec对象
+            DESKeySpec dks = new DESKeySpec(SEED_MFT.getBytes());
+            // 创建一个密匙工厂，然后用它把DESKeySpec转换成
+            // 一个SecretKey对象
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+            SecretKey secretKey = keyFactory.generateSecret(dks);
+            // using DES in ECB mode
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            // 用密匙初始化Cipher对象
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, sr);
+            // 执行加密操作
+            byte encryptedData[] = cipher.doFinal(clearStr.getBytes());
+            return new String(Base64.encode(encryptedData, Base64.DEFAULT));
+        } catch (Exception e) {
+            System.err.println("DES算法，加密数据出错!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

@@ -37,6 +37,7 @@ import com.example.administrator.sharenebulaproject.ui.adapter.DiversifiedRecycl
 import com.example.administrator.sharenebulaproject.ui.adapter.HotRecyclerViewAdapter;
 import com.example.administrator.sharenebulaproject.ui.adapter.TopRecyclerViewAdapter;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LocationUtils;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
@@ -192,7 +193,7 @@ public class AllTypeFragment extends BaseFragment implements SwipeRefreshLayout.
             dailyIntent.putExtra("value", String.valueOf(newsBean.getNewsid()));
             dailyIntent.putExtra("shareTitle", newsBean.getTitle());
             dailyIntent.putExtra("shareImgUrl", new StringBuffer().append(DataClass.FileUrl).append(newsBean.getListimg().split(",")[0]).toString());
-            dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).append(DataClass.USERID_SHARE).toString());
+            dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).toString());
             dailyIntent.putExtra("total", String.valueOf(newsBean.getStarbean()));
             dailyIntent.putExtra("ifcanmoney", String.valueOf(newsBean.getIfcanmoney()));
             startActivity(dailyIntent);
@@ -201,7 +202,7 @@ public class AllTypeFragment extends BaseFragment implements SwipeRefreshLayout.
             Intent dailyIntent = new Intent(getActivity(), PublicWebActivity.class);
             dailyIntent.setFlags(EventCode.GENERAL_WEB);
             dailyIntent.putExtra("value", String.valueOf(selfBuiltAdvertisingBean.getId()));
-            dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(selfBuiltAdvertisingBean.getId()).append(DataClass.USERID_SHARE).toString());
+            dailyIntent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(selfBuiltAdvertisingBean.getId()).toString());
             startActivity(dailyIntent);
         }
 

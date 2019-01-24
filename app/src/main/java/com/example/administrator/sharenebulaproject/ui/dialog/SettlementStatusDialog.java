@@ -21,7 +21,7 @@ import butterknife.BindView;
  * 结算状态
  */
 
-public class SettlementStatusDialog extends BaseDialog implements View.OnClickListener{
+public class SettlementStatusDialog extends BaseDialog implements View.OnClickListener {
 
     private Context context;
     private int status;
@@ -65,7 +65,7 @@ public class SettlementStatusDialog extends BaseDialog implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.query_log:
                 Intent settlementLogIntent = new Intent(context, SettlementLogActivity.class);
                 settlementLogIntent.setFlags(0);

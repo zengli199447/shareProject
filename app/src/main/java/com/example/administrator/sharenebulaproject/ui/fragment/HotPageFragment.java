@@ -41,6 +41,7 @@ import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.CustomPopupWindow;
 import com.example.administrator.sharenebulaproject.ui.view.ImageNetSlideshow;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LocationUtils;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SortingUtils;
@@ -481,7 +482,7 @@ public class HotPageFragment extends BaseFragment implements View.OnClickListene
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("reftype", 1);
         linkedHashMap.put("refid", newsid);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

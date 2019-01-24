@@ -28,6 +28,7 @@ import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
 import com.example.administrator.sharenebulaproject.ui.activity.about.PublicWebActivity;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -318,7 +319,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         linkedHashMap.put("action", DataClass.GET_CODE);
         linkedHashMap.put("phone", phoneNumber);
         linkedHashMap.put("type", type);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.ValidationCodeNetData(map)
@@ -358,9 +359,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
         }
         linkedHashMap.put("invitationcode", edit_invitation.getText().toString());
-        String toJson = new Gson().toJson(linkedHashMap);
+        String Json =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
-        map.put("vars", toJson);
+        map.put("vars", Json);
         addSubscribe(dataManager.fetchLogin(map)
                 .compose(RxUtil.<LoginInfoBean>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<LoginInfoBean>(toastUtil) {
@@ -403,7 +404,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         linkedHashMap.put("action", DataClass.BIND_INVITATIONCODE);
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("invitationcode", invitation);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

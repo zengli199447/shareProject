@@ -36,6 +36,7 @@ import com.example.administrator.sharenebulaproject.ui.activity.about.VipBenefit
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.BandCardEditText;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
 import com.example.administrator.sharenebulaproject.widget.UmShareListenerBuilder;
@@ -337,7 +338,7 @@ public class GeneralActivity extends BaseActivity implements View.OnClickListene
         linkedHashMap.put("account_main", account_main); //"所属人"
         linkedHashMap.put("account_code", account_code);//"账户"
         linkedHashMap.put("account_bank", account_bank); //"银行卡类型"
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

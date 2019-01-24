@@ -44,6 +44,7 @@ import com.example.administrator.sharenebulaproject.ui.adapter.DiversifiedRecycl
 import com.example.administrator.sharenebulaproject.ui.adapter.DiversifiedTopAdapter;
 import com.example.administrator.sharenebulaproject.ui.adapter.TopRecyclerViewAdapter;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.AdvertisingBuilder;
@@ -187,7 +188,7 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
                     intent.putExtra("value", String.valueOf(newsBean.getNewsid()));
                     intent.putExtra("shareTitle", newsBean.getTitle());
                     intent.putExtra("shareImgUrl", new StringBuffer().append(DataClass.FileUrl).append(newsBean.getListimg().split(",")[0]).toString());
-                    intent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).append(DataClass.USERID_SHARE).toString());
+                    intent.putExtra("shareNewsUrl", new StringBuffer().append(DataClass.DAILY_URL).append(newsBean.getNewsid()).toString());
                     intent.putExtra("total", String.valueOf(newsBean.getStarbean()));
                     intent.putExtra("ifcanmoney", String.valueOf(newsBean.getIfcanmoney()));
                     break;
@@ -387,10 +388,10 @@ public class AllTypeAboutFragment extends BaseFragment implements SwipeRefreshLa
                                 }
                             }
                             // 应用更新状态
-                            if (!result.getNewversion().isEmpty()) {
+                            if (!result.getNewversion().isEmpty() && DataClass.VERSION_UP) {
                                 DataClass.APK_URL = result.getDownsite();
-                                LogUtil.e(TAG," DataClass.APK_URL : " +  DataClass.APK_URL);
-
+                                DataClass.VERSION_UP = false;
+                                LogUtil.e(TAG, " DataClass.APK_URL : " + DataClass.APK_URL);
                                 if ("0".equals(result.getIfmust())) {
                                     instance.showPromptDialog(getActivity(), result.getNewversion(), false);
                                 } else {

@@ -16,6 +16,7 @@ import com.example.administrator.sharenebulaproject.model.event.EventCode;
 import com.example.administrator.sharenebulaproject.rxtools.RxBus;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
 import com.example.administrator.sharenebulaproject.ui.adapter.VipBenefitAdapter;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
 import com.google.gson.Gson;
 

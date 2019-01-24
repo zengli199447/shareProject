@@ -28,6 +28,7 @@ import com.example.administrator.sharenebulaproject.widget.ViewBuilder;
 import com.qq.e.ads.nativ.NativeExpressADView;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,7 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private long refreshTime;
     private final int height;
     private HashMap<NativeExpressADView, Integer> mAdViewPositionMap = new HashMap<>();
+    private List<ImageView> imageViewList = new ArrayList<>();
 
     // 脚布局
     private final int TYPE_FOOTER = 3;
@@ -128,7 +130,7 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
         View top_line = holder.itemView.findViewById(R.id.top_line);
         if (position > 1 && getItemViewType(position - 1) == 2) {
             if (top_line != null)
-            top_line.setVisibility(View.VISIBLE);
+                top_line.setVisibility(View.VISIBLE);
         } else {
             if (top_line != null)
                 top_line.setVisibility(View.GONE);
@@ -226,11 +228,19 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
                                 min_img1.setLayoutParams(minImg1layoutParams);
                                 min_img2.setLayoutParams(minImg2layoutParams);
                                 min_img3.setLayoutParams(minImg3layoutParams);
+                                imageViewList.clear();
+                                imageViewList.add(min_img1);
+                                imageViewList.add(min_img2);
+                                imageViewList.add(min_img3);
 
                                 String[] splitMultiple = newsBean.getListimg().split(",");
-                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img1);
-                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[1])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img2);
-                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[2])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img3);
+                                for (int i = 0; i < splitMultiple.length; i++) {
+                                    Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[i])).skipMemoryCache(false).error(R.drawable.banner_off).into(imageViewList.get(i));
+
+                                }
+//                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img1);
+//                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[1])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img2);
+//                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[2])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img3);
                                 break;
                             case 3:
                                 if (!newsBean.getTitle().equals(only_max_img_title_content.getText().toString()))

@@ -22,6 +22,7 @@ import com.example.administrator.sharenebulaproject.ui.activity.HomeActivity;
 import com.example.administrator.sharenebulaproject.ui.activity.LoginActivity;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -215,7 +216,7 @@ public class TradePasswordActivity extends BaseActivity implements View.OnClickL
         linkedHashMap.put("action", DataClass.GET_CODE);
         linkedHashMap.put("phone", phoneNumber);
         linkedHashMap.put("type", type);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.ValidationCodeNetData(map)
@@ -240,7 +241,7 @@ public class TradePasswordActivity extends BaseActivity implements View.OnClickL
         linkedHashMap.put("action", DataClass.TRANSACTION_PWD_SET);
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("traderspwd", passWord);
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

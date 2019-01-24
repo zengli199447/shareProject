@@ -25,6 +25,7 @@ import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
 import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.CustomPayPopupWindow;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -310,7 +311,7 @@ public class AccountBindActivity extends BaseActivity implements View.OnClickLis
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("moneyaccountid", zhifubaoMoneyaccountid);
         linkedHashMap.put("traderspwd", traderspwd);
-        final String toJson = new Gson().toJson(linkedHashMap);
+        final  String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

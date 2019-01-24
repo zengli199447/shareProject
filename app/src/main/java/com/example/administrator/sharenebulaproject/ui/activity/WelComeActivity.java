@@ -17,6 +17,7 @@ import com.example.administrator.sharenebulaproject.model.db.entity.AppDBInfo;
 import com.example.administrator.sharenebulaproject.model.db.entity.LoginUserInfo;
 import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.model.event.EventCode;
+import com.example.administrator.sharenebulaproject.rxtools.RxBus;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
 import com.example.administrator.sharenebulaproject.ui.view.ImageSlideshow;
 import com.example.administrator.sharenebulaproject.utils.LocationUtils;
@@ -53,8 +54,10 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(WelComeActivity.this, HomeActivity.class));
                 finish();
                 break;
+            case EventCode.FINISH_TASK:
+                finish();
+                break;
         }
-
     }
 
     @Override
@@ -69,6 +72,12 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initClass() {
+        if (!isTaskRoot()) {
+            finish();
+            return;
+        }
+        DataClass.ALL_TYPE_TITLE.clear();
+        DataClass.TYPE_TITLE.clear();
         MyApplication.executorService.submit(new Runnable() {
             @Override
             public void run() {
@@ -143,7 +152,7 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
     public void onItemClick(View view, int position) {
         if (position == bannerList.size() - 1) {
             startActivity(new Intent(WelComeActivity.this, HomeActivity.class));
-            finish();
+            RxBus.getDefault().post(new CommonEvent(EventCode.FINISH_TASK));
         }
     }
 

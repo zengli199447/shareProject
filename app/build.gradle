@@ -23,8 +23,8 @@ android {
         applicationId "com.example.administrator.sharenebulaproject"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -72,6 +72,12 @@ repositories {
     flatDir {
         dirs 'libs'
     }
+}
+
+//greendao配置
+greendao {
+    //版本号，升级时可配置
+    schemaVersion 2
 }
 
 dependencies {

@@ -77,8 +77,7 @@ public class RetrofitUrlManager {
      * @return
      */
     public OkHttpClient.Builder with(OkHttpClient.Builder builder) {
-        return builder
-                .addInterceptor(mInterceptor);
+        return builder.addInterceptor(mInterceptor);
     }
 
     /**

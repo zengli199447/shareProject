@@ -25,6 +25,7 @@ import com.example.administrator.sharenebulaproject.ui.dialog.ProgressDialog;
 import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.view.CircleImageView;
 import com.example.administrator.sharenebulaproject.ui.view.CustomMediaFilePopupWindow;
+import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.SystemUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
@@ -289,7 +290,7 @@ public class PersonageActivity extends BaseActivity implements View.OnClickListe
         linkedHashMap.put("sex", input_gender.getText());
         linkedHashMap.put("job", input_professional.getText());
         linkedHashMap.put("moneyin", input_expected_income.getText());
-        String toJson = new Gson().toJson(linkedHashMap);
+        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.getUpLoadUserInfoNetBean(map)

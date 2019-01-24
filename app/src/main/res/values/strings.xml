@@ -253,6 +253,11 @@
     <string name="read_advertising">阅读有益  分享更有益</string>
     <string name="skip_advertising">跳过广告</string>
     <string name="information">资讯</string>
+    <string name="fans_commission">粉丝佣金</string>
+    <string name="invite_rewards">邀请奖励</string>
+    <string name="up_rewards">升级奖励</string>
+    <string name="invitation_about">选填,好友邀请码</string>
+    <string name="error_userid">用户ID丢失异常,建议您重新启动APP,以免影响您的正常使用!</string>
 
 
 </resources>

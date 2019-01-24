@@ -79,6 +79,9 @@ public abstract class SimpleActivity extends SupportActivity {
 
     @Override
     public void onTrimMemory(int level) {
+        if (level == TRIM_MEMORY_MODERATE) {
+            MyApplication.exitApp();
+        }
         super.onTrimMemory(level);
     }
 
@@ -147,13 +150,13 @@ public abstract class SimpleActivity extends SupportActivity {
                 LogUtil.e(TAG, " style 异常 ");
             }
         }
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
