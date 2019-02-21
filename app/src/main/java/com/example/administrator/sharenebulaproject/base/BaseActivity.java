@@ -1,16 +1,31 @@
 package com.example.administrator.sharenebulaproject.base;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.PersistableBundle;
+
 import com.example.administrator.sharenebulaproject.di.component.ActivityComponent;
 import com.example.administrator.sharenebulaproject.di.component.DaggerActivityComponent;
 import com.example.administrator.sharenebulaproject.di.module.ActivityModule;
+import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.global.MyApplication;
+import com.example.administrator.sharenebulaproject.global.Persistence;
 import com.example.administrator.sharenebulaproject.model.DataManager;
+import com.example.administrator.sharenebulaproject.model.bean.TheNewTypeNetBean;
 import com.example.administrator.sharenebulaproject.model.event.CommonEvent;
 import com.example.administrator.sharenebulaproject.rxtools.RxBus;
 import com.example.administrator.sharenebulaproject.rxtools.RxUtil;
+import com.example.administrator.sharenebulaproject.ui.activity.HomeActivity;
+import com.example.administrator.sharenebulaproject.ui.activity.WelComeActivity;
+import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.example.administrator.sharenebulaproject.utils.ToastUtil;
 import com.example.administrator.sharenebulaproject.widget.CommonSubscriber;
 import com.umeng.message.PushAgent;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 

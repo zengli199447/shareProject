@@ -39,6 +39,7 @@ import com.example.administrator.sharenebulaproject.ui.adapter.NewsContentAdapte
 import com.example.administrator.sharenebulaproject.ui.adapter.TabAdapter;
 import com.example.administrator.sharenebulaproject.ui.adapter.TabPageIndicatorAdapter;
 import com.example.administrator.sharenebulaproject.ui.adapter.TitleNewsTypeAdapter;
+import com.example.administrator.sharenebulaproject.ui.dialog.ShowDialog;
 import com.example.administrator.sharenebulaproject.ui.fragment.all.AllTypeAboutFragment;
 import com.example.administrator.sharenebulaproject.ui.fragment.all.AllTypeFragment;
 import com.example.administrator.sharenebulaproject.utils.AESCryptUtil;
@@ -102,6 +103,7 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
     private Animation animationRefreshOut;
     private Animation animationRefreshInBottom;
     private Animation animationRefreshOutBottom;
+    private ShowDialog instance;
 
     @Override
     protected void initInject() {
@@ -156,10 +158,21 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
 
         animationRefreshInBottom = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_alpha_and_in_bottom);
         animationRefreshOutBottom = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_alpha_and_out_bottom);
+
+        instance = ShowDialog.getInstance();
     }
 
     @Override
     protected void initData() {
+        FormatData();
+    }
+
+    @Override
+    protected void onPersistence() {
+        super.onPersistence();
+    }
+
+    private void FormatData() {
         LogUtil.e(TAG, "DataClass.TYPE_TITLE.size() : " + DataClass.TYPE_TITLE.size());
         for (int i = 0; i < DataClass.TYPE_TITLE.size(); i++) {
             Object object = DataClass.TYPE_TITLE.get(i);
@@ -258,7 +271,7 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
         mFragments.clear();
         titleNews.clear();
         titleAboutNews.clear();
-        initData();
+        FormatData();
         initView();
     }
 
@@ -420,7 +433,7 @@ public class ToDayPageFragment extends BaseFragment implements View.OnClickListe
         linkedHashMap.put("action", DataClass.CATE_SORT_SET);
         linkedHashMap.put("userid", DataClass.USERID);
         linkedHashMap.put("sortlist", content);
-        String toJson =  AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
+        String toJson = AESCryptUtil.encrypt(new Gson().toJson(linkedHashMap));
         map.put("version", "v1");
         map.put("vars", toJson);
         addSubscribe(dataManager.UpLoadStatus(map)

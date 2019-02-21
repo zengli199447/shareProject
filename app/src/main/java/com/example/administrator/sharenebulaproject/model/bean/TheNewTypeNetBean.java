@@ -1,5 +1,6 @@
 package com.example.administrator.sharenebulaproject.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * 邮箱：229017464@qq.com
  * remark:
  */
-public class TheNewTypeNetBean {
+public class TheNewTypeNetBean implements Serializable{
 
     private int status;
     private ResultBean result;
@@ -37,7 +38,7 @@ public class TheNewTypeNetBean {
         this.message = message;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable{
         private List<SelectBean> select;
         private List<AllBean> all;
 
@@ -57,7 +58,7 @@ public class TheNewTypeNetBean {
             this.all = all;
         }
 
-        public static class SelectBean {
+        public static class SelectBean implements Serializable{
 
             private String ucid;
             private String userid;
@@ -115,7 +116,7 @@ public class TheNewTypeNetBean {
             }
         }
 
-        public static class AllBean {
+        public static class AllBean implements Serializable{
 
             private int cateid;
             private String catename;

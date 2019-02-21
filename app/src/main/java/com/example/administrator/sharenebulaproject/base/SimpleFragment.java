@@ -78,6 +78,10 @@ public abstract class SimpleFragment extends SupportFragment {
 
     }
 
+    protected void onPersistence() {
+
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

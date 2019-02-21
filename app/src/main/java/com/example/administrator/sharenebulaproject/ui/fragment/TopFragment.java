@@ -214,7 +214,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden) {
+        if (!hidden && progressDialog != null) {
             initNetDataWork();
         }
         LogUtil.e(TAG, "hidden : " + hidden);

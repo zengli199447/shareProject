@@ -11,7 +11,11 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
+import com.example.administrator.sharenebulaproject.R;
+import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.global.MyApplication;
+import com.example.administrator.sharenebulaproject.global.Persistence;
+import com.example.administrator.sharenebulaproject.ui.activity.WelComeActivity;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -67,9 +71,18 @@ public abstract class SimpleActivity extends SupportActivity {
 
     }
 
+    protected void onPersistence() {
+        setContentView(R.layout.activity_main);
+    }
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null)
+            DataClass.USERID = "#";
+        onPersistence();
+        Intent outIntent = new Intent(this, WelComeActivity.class);
+        outIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(outIntent);
     }
 
     @Override

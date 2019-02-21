@@ -32,11 +32,11 @@ public class DataClass {
 //    public static String FileUrl = "http://xfx.027perfect.com/";
     public static String FileUrl = "http://yuedeyi.douy18.com/";
 
-    public static final String BASE_URL = URL + "api.mingfa.php?version=v1&vars=" + "{" + "\"" + "action" + "\"" + ":" + "\"" + "image_save_set" + "\"" + "}";
+    public static String BASE_URL = URL + "api.mingfa.php?version=v1&vars=" + "{" + "\"" + "action" + "\"" + ":" + "\"" + "image_save_set" + "\"" + "}";
 
-    public static final String MESSAGE_URL = URL_ + "pf_wx.php?act=home&do=messagelist&uid=";
+    public static String MESSAGE_URL = URL_ + "pf_wx.php?act=home&do=messagelist&uid=";
 
-    public static final String DAILY_URL = URL_ + "pf_wx.php?act=oneday&do=detail&newsid=";
+    public static String DAILY_URL = URL_ + "pf_wx.php?act=oneday&do=detail&newsid=";
 
     public static String SELECT = URL_ + "pf_wx.php?act=oneday&do=display&userid_share=";
 
@@ -79,7 +79,7 @@ public class DataClass {
     //图片上传
     public static String IMAGE_SAVE_SET = "image_save_set";
     // 头像保存地址
-    public static final String IMAGESAVEGET = BASE_URL + "{" + "\"" + "action" + "\"" + ":" + "\"" + "image_save_set" + "\"" + "}";
+    public static String IMAGESAVEGET = BASE_URL + "{" + "\"" + "action" + "\"" + ":" + "\"" + "image_save_set" + "\"" + "}";
     //实名认证
     public static String REALNAME_INFO_SET = "realname_info_set";
     //交易密码（修改交易密码）

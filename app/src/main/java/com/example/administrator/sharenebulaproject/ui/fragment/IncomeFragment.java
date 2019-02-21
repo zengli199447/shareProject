@@ -74,6 +74,7 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
     private String queryTime = "今天";
     private List<IncomeNetBean.ResultBean.MoneyindetailBean> moneyindetail;
     private MediaPlayBuilder mediaPlayBuilder;
+    private boolean status = true;
 
     @Override
     protected int getLayoutId() {
@@ -167,7 +168,7 @@ public class IncomeFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden) {
+        if (!hidden && progressDialog != null) {
             initNetDataWork("");
         }
         LogUtil.e(TAG, "hidden : " + hidden);

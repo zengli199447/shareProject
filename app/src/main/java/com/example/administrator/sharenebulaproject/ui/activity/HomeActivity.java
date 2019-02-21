@@ -107,6 +107,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         Intent intent = new Intent(this, DownloadService.class);
         startService(intent);
         bindService(intent, mConnection, BIND_AUTO_CREATE);//绑定服务
+
     }
 
     private SupportFragment getTargetFragment(int item) {

@@ -133,8 +133,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     protected void initData() {
-        progressDialog.show();
-        initNetDataWork();
+        if (progressDialog != null){
+            progressDialog.show();
+            initNetDataWork();
+        }
     }
 
     @Override
@@ -310,6 +312,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
     private void initNetDataWork() {
         HashMap map = new HashMap<>();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
+        LogUtil.e(TAG,"action :" + DataClass.MY_CENTER_GET);
         linkedHashMap.put("action", DataClass.MY_CENTER_GET);
         linkedHashMap.put("userid", DataClass.USERID);
         String toJson = new Gson().toJson(linkedHashMap);
