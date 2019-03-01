@@ -1,6 +1,8 @@
 package com.example.administrator.sharenebulaproject.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -68,6 +70,12 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected int getLayout() {
         return R.layout.activity_welcome;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        MyApplication.flag = 0;
+        super.onCreate(savedInstanceState);
     }
 
     @Override

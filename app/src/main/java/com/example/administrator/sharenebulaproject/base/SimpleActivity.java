@@ -42,6 +42,8 @@ public abstract class SimpleActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (MyApplication.flag == -1)
+            RestoreInstanceState(false);
         TitleSysStyle();
         setContentView(getLayout());
         requestPermissions();
@@ -77,13 +79,11 @@ public abstract class SimpleActivity extends SupportActivity {
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState != null)
-            DataClass.USERID = "#";
-        onPersistence();
-        Intent outIntent = new Intent(this, WelComeActivity.class);
-        outIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(outIntent);
+        if (savedInstanceState != null) {
+            RestoreInstanceState(true);
+        }
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
@@ -164,6 +164,16 @@ public abstract class SimpleActivity extends SupportActivity {
             }
         }
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+
+    private void RestoreInstanceState(boolean status) {
+        if (status) {
+            DataClass.USERID = "#";
+            onPersistence();
+        }
+        Intent outIntent = new Intent(this, WelComeActivity.class);
+        outIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(outIntent);
     }
 
     @Override

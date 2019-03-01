@@ -45,7 +45,7 @@ import butterknife.OnClick;
  * 邮箱：229017464@qq.com
  * remark: 引导页、广告
  */
-public class AdvertisingActivity extends BaseActivity implements View.OnClickListener ,SplashADListener {
+public class AdvertisingActivity extends BaseActivity implements View.OnClickListener, SplashADListener {
 
     @BindView(R.id.advertising)
     ImageView advertising;
@@ -59,6 +59,7 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
     private int time;
 
     private int minSplashTimeWhenNoAD = 5000;
+    private boolean actionStatus;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -82,7 +83,8 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
 
     private void seconds() {
         if (time > 0 && action != null) {
-            time = time - 1;
+            if (actionStatus)
+                time = time - 1;
             action.setText(new StringBuffer().append("(").append(time).append(")").append("  ").append(getString(R.string.action)).toString());
             handler.sendEmptyMessageDelayed(1, 999);
         }
@@ -143,8 +145,7 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void jumpWhenCanClick() {
-        Log.d("test", "this.hasWindowFocus():" + this.hasWindowFocus());
-        if (canJumpImmediately) {
+        if (canJumpImmediately && !actionStatus) {
             this.startActivity(new Intent(this, HomeActivity.class));
             this.finish();
         } else {
@@ -159,22 +160,27 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
             jumpWhenCanClick();
         }
         canJumpImmediately = true;
+        if (actionStatus) {
+            this.startActivity(new Intent(this, HomeActivity.class));
+            this.finish();
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         canJumpImmediately = false;
+        LogUtil.e(TAG, "actionStatus : " + actionStatus);
     }
 
     @Override
     public void onADDismissed() {
-
+        LogUtil.e(TAG, "onADDismissed");
     }
 
     @Override
     public void onNoAD(AdError adError) {
-
+        LogUtil.e(TAG, "onNoAD");
     }
 
     @Override
@@ -184,7 +190,8 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onADClicked() {
-
+        LogUtil.e(TAG, "onADClicked");
+        actionStatus = true;
     }
 
     @Override
@@ -197,6 +204,7 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onADTick(long millisUntilFinished) {
         action.setText(String.format(getString(R.string.action), Math.round(millisUntilFinished / 1000f)));
+        LogUtil.e(TAG, "onADTick");
     }
 
     @Override
@@ -208,13 +216,18 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(AdvertisingActivity.this, HomeActivity.class));
-                finish();
+                if (!actionStatus) {
+                    LogUtil.e(TAG, "actionStatus : " + actionStatus);
+                    startActivity(new Intent(AdvertisingActivity.this, HomeActivity.class));
+                    finish();
+                }
             }
         }, shouldDelayMills);
     }
 
-    /** 开屏页一定要禁止用户对返回按钮的控制，否则将可能导致用户手动退出了App而广告无法正常曝光和计费 */
+    /**
+     * 开屏页一定要禁止用户对返回按钮的控制，否则将可能导致用户手动退出了App而广告无法正常曝光和计费
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
@@ -225,7 +238,6 @@ public class AdvertisingActivity extends BaseActivity implements View.OnClickLis
 
     //新闻类型获取
     private void TheNewsTypeNetWork() {
-//        handler.sendEmptyMessageDelayed(1, 999);
         HashMap map = new HashMap<>();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("action", DataClass.CATE_GET);
