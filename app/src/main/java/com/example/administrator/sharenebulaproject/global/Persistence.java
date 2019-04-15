@@ -13,7 +13,7 @@ import com.example.administrator.sharenebulaproject.model.db.entity.LoginUserInf
 public class Persistence {
 
 
-    public void PersistenceStorage(Bundle savedInstanceState, DataManager dataManager) {
+    public void PersistenceStorage(DataManager dataManager) {
 
         DataClass.URL = "http://yuedeyi.douy18.com/api/";
         DataClass.URL_ = "http://yuedeyi.douy18.com/";
@@ -56,7 +56,7 @@ public class Persistence {
         LoginUserInfo loginUserInfo = dataManager.queryLoginUserInfo("admin");
 
         //用户登陆ID
-        if (loginUserInfo!=null){
+        if (loginUserInfo != null) {
             DataClass.USERID = loginUserInfo.getUserid();
             DataClass.SELECT = DataClass.SELECT + loginUserInfo.getUserid();
         }

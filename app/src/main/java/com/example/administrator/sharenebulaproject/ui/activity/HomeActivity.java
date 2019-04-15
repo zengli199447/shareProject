@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.base.BaseActivity;
@@ -271,6 +272,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 hideFragment = showFragment;
             }
     }
+
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -235,8 +235,8 @@ public class DiversifiedAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
                                 String[] splitMultiple = newsBean.getListimg().split(",");
                                 for (int i = 0; i < splitMultiple.length; i++) {
-                                    Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[i])).skipMemoryCache(false).error(R.drawable.banner_off).into(imageViewList.get(i));
-
+                                    if (i < imageViewList.size())
+                                        Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[i])).skipMemoryCache(false).error(R.drawable.banner_off).into(imageViewList.get(i));
                                 }
 //                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[0])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img1);
 //                                Glide.with(context).load(SystemUtil.JudgeUrl(splitMultiple[1])).skipMemoryCache(false).error(R.drawable.banner_off).into(min_img2);

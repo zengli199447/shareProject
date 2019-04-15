@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 
 import com.example.administrator.sharenebulaproject.di.component.AppComponent;
@@ -31,6 +32,8 @@ import com.tencent.stat.StatService;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -55,13 +58,14 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        disableAPIDialog();
         instance = this;
         LogUtil.isDebug = true;
         initThreadTools();
         InitializeService.start(this);
         //友盟初始化
         initUm();
-//        new UmPushBuilder(this).initPushSetting();
+        new UmPushBuilder(this).initPushSetting();
         TTAdManagerHolder.getInstance(this);
         //统计初始化
         initMTA();
@@ -92,6 +96,24 @@ public class MyApplication extends Application {
         executorService = ThreadPoolHelp.Builder.fixed(6)
                 .name("globalTask")
                 .builder();
+    }
+
+    /**
+     * Android P API 监测禁止弹窗
+     */
+    private void disableAPIDialog() {
+        if (Build.VERSION.SDK_INT < 28) return;
+        try {
+            Class clazz = Class.forName("android.app.ActivityThread");
+            Method currentActivityThread = clazz.getDeclaredMethod("currentActivityThread");
+            currentActivityThread.setAccessible(true);
+            Object activityThread = currentActivityThread.invoke(null);
+            Field mHiddenApiWarningShown = clazz.getDeclaredField("mHiddenApiWarningShown");
+            mHiddenApiWarningShown.setAccessible(true);
+            mHiddenApiWarningShown.setBoolean(activityThread, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

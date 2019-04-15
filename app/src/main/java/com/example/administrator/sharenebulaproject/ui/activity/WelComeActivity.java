@@ -14,6 +14,7 @@ import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.base.BaseActivity;
 import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.global.MyApplication;
+import com.example.administrator.sharenebulaproject.global.Persistence;
 import com.example.administrator.sharenebulaproject.model.bean.TheNewTypeNetBean;
 import com.example.administrator.sharenebulaproject.model.db.entity.AppDBInfo;
 import com.example.administrator.sharenebulaproject.model.db.entity.LoginUserInfo;
@@ -73,12 +74,6 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        MyApplication.flag = 0;
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     protected void initClass() {
         if (!isTaskRoot()) {
             finish();
@@ -92,7 +87,8 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
                 LocationUtils.getCNBylocation(WelComeActivity.this);
             }
         });
-        dataClass = new DataClass(dataManager);
+        if (dataClass == null)
+            dataClass = new DataClass(dataManager);
         if (dataManager.queryLoginUserInfo("admin") != null) {
             LoginUserInfo admin = dataManager.queryLoginUserInfo("admin");
             DataClass.USERID = admin.getUserid();
@@ -109,12 +105,20 @@ public class WelComeActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData() {
-        bannerList = dataClass.getWelcomeBannerList();
-        for (int i = 0; i < bannerList.size(); i++) {
-            views.add(new ImageView(this));
-            Glide.with(WelComeActivity.this).load(bannerList.get(i)).asBitmap().placeholder(R.drawable.banner_off).into(views.get(i));
+        try {
+            bannerList = dataClass.getWelcomeBannerList();
+            for (int i = 0; i < bannerList.size(); i++) {
+                views.add(new ImageView(this));
+                Glide.with(WelComeActivity.this).load(bannerList.get(i)).asBitmap().placeholder(R.drawable.banner_off).into(views.get(i));
+            }
+            myPagerAdapter = new MyPagerAdapter(views);
+        } catch (Exception e) {
+
+        } finally {
+//            dataClass = new DataClass(dataManager);
+//            new Persistence().PersistenceStorage(dataManager);
+//            initData();
         }
-        myPagerAdapter = new MyPagerAdapter(views);
     }
 
     @Override

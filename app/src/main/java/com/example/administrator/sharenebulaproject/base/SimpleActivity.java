@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.View;
 
 import com.example.administrator.sharenebulaproject.R;
 import com.example.administrator.sharenebulaproject.global.DataClass;
 import com.example.administrator.sharenebulaproject.global.MyApplication;
 import com.example.administrator.sharenebulaproject.global.Persistence;
+import com.example.administrator.sharenebulaproject.ui.activity.SplashScreenActivity;
 import com.example.administrator.sharenebulaproject.ui.activity.WelComeActivity;
 import com.example.administrator.sharenebulaproject.utils.LogUtil;
 import com.tbruyelle.rxpermissions2.Permission;
@@ -42,6 +44,7 @@ public abstract class SimpleActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtil.e(TAG, "MyApplication.flag : " + MyApplication.flag);
         if (MyApplication.flag == -1)
             RestoreInstanceState(false);
         TitleSysStyle();
@@ -80,10 +83,17 @@ public abstract class SimpleActivity extends SupportActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
+            System.out.println("不为空");
             RestoreInstanceState(true);
+        } else {
+            System.out.println("为空");
         }
     }
 
+    @Override
+    public void onActionModeStarted(ActionMode mode) {
+        super.onActionModeStarted(mode);
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
@@ -92,9 +102,9 @@ public abstract class SimpleActivity extends SupportActivity {
 
     @Override
     public void onTrimMemory(int level) {
-        if (level == TRIM_MEMORY_MODERATE) {
-            MyApplication.exitApp();
-        }
+//        if (level == TRIM_MEMORY_MODERATE) {
+//            MyApplication.exitApp();
+//        }
         super.onTrimMemory(level);
     }
 
@@ -168,10 +178,9 @@ public abstract class SimpleActivity extends SupportActivity {
 
     private void RestoreInstanceState(boolean status) {
         if (status) {
-            DataClass.USERID = "#";
             onPersistence();
         }
-        Intent outIntent = new Intent(this, WelComeActivity.class);
+        Intent outIntent = new Intent(this, SplashScreenActivity.class);
         outIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(outIntent);
     }
